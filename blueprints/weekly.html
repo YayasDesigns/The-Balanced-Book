@@ -27,7 +27,7 @@
       padding-left: 15mm; /* 10mm spiral + 5mm extra */
     }
     .weekly-back {
-      padding-left: 5mm;   /* 5mm less than default 10mm spiral */
+      padding-left: 5mm;
       padding-right: 15mm;
     }
 
@@ -181,44 +181,23 @@
       align-items: center;
     }
 
-    /* ---- Self Reflections grid ---- */
+    /* ---- Self Reflections ---- */
     .reflections-section {
       margin-top: 5mm;
     }
 
-    .reflections-day-headers {
-      display: flex;
-      margin-left: 10mm; /* offset past the row checkbox */
-      height: 5mm;
-      line-height: 5mm;
-    }
-
-    .reflections-day-headers span {
-      width: 10mm;
-      text-align: center;
-      font-size: 7pt;
-      font-weight: bold;
-      color: var(--black);
-    }
-
-    .reflections-row {
+    .reflections-prompt {
       display: flex;
       align-items: center;
+      gap: 2.5mm;
       height: 10mm;
     }
 
-    .reflections-row .cb-black {
-      margin-right: 5mm;
-    }
-
-    .reflections-cells {
-      display: flex;
-    }
-
-    .reflections-cells .r-cell {
-      width: 10mm;
-      height: 10mm;
-      border: 0.5px solid var(--black);
+    .prompt-text {
+      font-family: var(--font-heading);
+      font-style: italic;
+      font-size: 8pt;
+      color: var(--accent);
     }
 
     /* ---- Open Notes ---- */
@@ -410,40 +389,25 @@
 
     <!-- Self Reflections -->
     <div class="reflections-section">
-      <div class="title-accent">Self Reflections</div>
+      <div class="title-accent">Self-Reflections:</div>
 
-      <!-- Day headers -->
-      <div class="reflections-day-headers">
-        <span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span>
-      </div>
-
-      <!-- Row 1 -->
-      <div class="reflections-row">
+      <!-- Row 1: Stressful/Hard -->
+      <div class="reflections-prompt">
         <div class="cb-black"></div>
-        <div class="reflections-cells">
-          <div class="r-cell"></div>
-          <div class="r-cell"></div>
-          <div class="r-cell"></div>
-          <div class="r-cell"></div>
-          <div class="r-cell"></div>
-          <div class="r-cell"></div>
-          <div class="r-cell"></div>
-        </div>
+        <span class="prompt-text">Things that were Stressful or Hard? How did I overcome?</span>
       </div>
+      <div class="write-line"></div>
+      <div class="write-line"></div>
+      <div class="write-line"></div>
 
-      <!-- Row 2 -->
-      <div class="reflections-row">
+      <!-- Row 2: Fun/Relaxing -->
+      <div class="reflections-prompt">
         <div class="cb-black"></div>
-        <div class="reflections-cells">
-          <div class="r-cell"></div>
-          <div class="r-cell"></div>
-          <div class="r-cell"></div>
-          <div class="r-cell"></div>
-          <div class="r-cell"></div>
-          <div class="r-cell"></div>
-          <div class="r-cell"></div>
-        </div>
+        <span class="prompt-text">Things that were Fun and/or relaxing? How to do more?</span>
       </div>
+      <div class="write-line"></div>
+      <div class="write-line"></div>
+      <div class="write-line"></div>
     </div>
 
     <!-- Open Notes -->
