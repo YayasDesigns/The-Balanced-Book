@@ -189,6 +189,19 @@
       border-bottom: 4px solid transparent;
       border-left: 6px solid var(--black);
     }
+    /* ---- BACK PAGE: same layout shifted 20mm left (spiral on right) ---- */
+    .page.monthly-back {
+      padding: 2.5mm 20mm 5mm 5mm;
+    }
+
+    .monthly-back .monthly-header {
+      margin-left: 0;
+    }
+
+    .monthly-back .grid-wrapper {
+      margin-right: 18mm;
+      margin-left: -10mm;
+    }
   </style>
 </head>
 <body>
@@ -279,6 +292,84 @@
             <td>
               <div class="cell-inner"><div class="cb-square"></div><div class="cb-rect"></div></div>
               <!-- Bottom border arrow for last row -->
+              <span class="arrow-bottom-line"></span>
+              <span class="arrow-bottom-head"></span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ==================== MONTHLY — BACK PAGE ==================== -->
+  <div class="page-label">MONTHLY PAGE — BACK</div>
+  <div class="page monthly monthly-back" style="overflow: visible;">
+    <!-- Header -->
+    <div class="monthly-header">
+      <span class="present-label">Present :</span>
+      <div class="month-box"></div>
+    </div>
+
+    <!-- Calendar grid (same layout, shifted left) -->
+    <div class="grid-wrapper">
+      <table class="monthly-grid">
+        <tbody>
+          <tr>
+            <th>Saturday</th>
+            <td><div class="cell-inner"><div class="cb-square"></div><div class="cb-rect"></div></div></td>
+            <td><div class="cell-inner"><div class="cb-square"></div><div class="cb-rect"></div></div></td>
+            <td><div class="cell-inner"><div class="cb-square"></div><div class="cb-rect"></div></div></td>
+            <td><div class="cell-inner"><div class="cb-square"></div><div class="cb-rect"></div></div></td>
+            <td><div class="cell-inner"><div class="cb-square"></div><div class="cb-rect"></div></div></td>
+          </tr>
+          <tr>
+            <th>Friday</th>
+            <td><div class="cell-inner"><div class="cb-square"></div><div class="cb-rect"></div></div></td>
+            <td><div class="cell-inner"><div class="cb-square"></div><div class="cb-rect"></div></div></td>
+            <td><div class="cell-inner"><div class="cb-square"></div><div class="cb-rect"></div></div></td>
+            <td><div class="cell-inner"><div class="cb-square"></div><div class="cb-rect"></div></div></td>
+            <td><div class="cell-inner"><div class="cb-square"></div><div class="cb-rect"></div></div></td>
+          </tr>
+          <tr>
+            <th>Thursday</th>
+            <td><div class="cell-inner"><div class="cb-square"></div><div class="cb-rect"></div></div></td>
+            <td><div class="cell-inner"><div class="cb-square"></div><div class="cb-rect"></div></div></td>
+            <td><div class="cell-inner"><div class="cb-square"></div><div class="cb-rect"></div></div></td>
+            <td><div class="cell-inner"><div class="cb-square"></div><div class="cb-rect"></div></div></td>
+            <td><div class="cell-inner"><div class="cb-square"></div><div class="cb-rect"></div></div></td>
+          </tr>
+          <tr>
+            <th>Wednesday</th>
+            <td><div class="cell-inner"><div class="cb-square"></div><div class="cb-rect"></div></div></td>
+            <td><div class="cell-inner"><div class="cb-square"></div><div class="cb-rect"></div></div></td>
+            <td><div class="cell-inner"><div class="cb-square"></div><div class="cb-rect"></div></div></td>
+            <td><div class="cell-inner"><div class="cb-square"></div><div class="cb-rect"></div></div></td>
+            <td><div class="cell-inner"><div class="cb-square"></div><div class="cb-rect"></div></div></td>
+          </tr>
+          <tr>
+            <th>Tuesday</th>
+            <td><div class="cell-inner"><div class="cb-square"></div><div class="cb-rect"></div></div></td>
+            <td><div class="cell-inner"><div class="cb-square"></div><div class="cb-rect"></div></div></td>
+            <td><div class="cell-inner"><div class="cb-square"></div><div class="cb-rect"></div></div></td>
+            <td><div class="cell-inner"><div class="cb-square"></div><div class="cb-rect"></div></div></td>
+            <td><div class="cell-inner"><div class="cb-square"></div><div class="cb-rect"></div></div></td>
+          </tr>
+          <tr>
+            <th>Monday</th>
+            <td><div class="cell-inner"><div class="cb-square"></div><div class="cb-rect"></div></div></td>
+            <td><div class="cell-inner"><div class="cb-square"></div><div class="cb-rect"></div></div></td>
+            <td><div class="cell-inner"><div class="cb-square"></div><div class="cb-rect"></div></div></td>
+            <td><div class="cell-inner"><div class="cb-square"></div><div class="cb-rect"></div></div></td>
+            <td><div class="cell-inner"><div class="cb-square"></div><div class="cb-rect"></div></div></td>
+          </tr>
+          <tr>
+            <th>Sunday</th>
+            <td><div class="cell-inner"><div class="cb-square"></div><div class="cb-rect"></div></div></td>
+            <td><div class="cell-inner"><div class="cb-square"></div><div class="cb-rect"></div></div></td>
+            <td><div class="cell-inner"><div class="cb-square"></div><div class="cb-rect"></div></div></td>
+            <td><div class="cell-inner"><div class="cb-square"></div><div class="cb-rect"></div></div></td>
+            <td>
+              <div class="cell-inner"><div class="cb-square"></div><div class="cb-rect"></div></div>
               <span class="arrow-bottom-line"></span>
               <span class="arrow-bottom-head"></span>
             </td>
