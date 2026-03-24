@@ -120,16 +120,19 @@ body {
   border-bottom: 0.5px solid var(--line-gray);
 }
 
-/* Bullet dot: 2.5mm circle centered in the 5mm row.
-   margin-right: 2.5mm keeps the next element starting
-   at the 5mm mark from the left of the bullet area. */
+/* Bullet dot: 2.5mm circle centered on the nearest
+   dot-grid point (5mm from box left edge).
+   Inside a 5mm-padded box, the first grid dot is at
+   the padding edge, so offset 1.25mm to center the
+   2.5mm circle on that dot. */
 .bullet-dot {
   width: 2.5mm;
   height: 2.5mm;
   border: 1px solid var(--accent);
   border-radius: 50%;
   flex-shrink: 0;
-  margin-right: 2.5mm;
+  margin-left: -3.75mm;
+  margin-right: 1.25mm;
 }
 
 /* ---- Checkboxes ----
