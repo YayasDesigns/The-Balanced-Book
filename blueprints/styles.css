@@ -1,0 +1,212 @@
+/* ============================================
+   THE BALANCED BOOK — Shared Styles (v2)
+   A5 size: 148mm × 210mm
+   Dot grid: 5mm spacing
+   Two-tone: black (structure) + accent (customizable)
+   Spiral binding: 10mm left margin
+
+   GRID RULE: All heights, margins, paddings that
+   affect vertical/horizontal position MUST be
+   multiples of 5mm so elements align with dots.
+   ============================================ */
+
+:root {
+  /* Customizable accent color */
+  --accent: #7B2D8E;
+
+  /* Structure colors */
+  --black: #1a1a1a;
+  --gray: #888;
+  --light-gray: #d0d0d0;
+  --line-gray: #bbb;
+  --dot-color: #c0c0c0;
+  --bg: #fefefe;
+
+  /* Typography */
+  --font-heading: 'Georgia', 'Times New Roman', serif;
+  --font-body: 'Helvetica Neue', 'Arial', sans-serif;
+
+  /* Page dimensions */
+  --page-width: 148mm;
+  --page-height: 210mm;
+  --dot-gap: 5mm;
+  --spiral-margin: 10mm;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #e0e0e0;
+  font-family: var(--font-body);
+}
+
+/* ---- A5 Page with dot grid ----
+   Padding: 5mm top, 5mm right, 5mm bottom, 10mm left (spiral).
+   All multiples of 5mm, so content origin sits on a dot.
+   Content area: 133mm wide × 200mm tall.
+*/
+.page {
+  width: var(--page-width);
+  height: var(--page-height);
+  padding: 5mm 5mm 5mm var(--spiral-margin);
+  margin: 20px auto;
+  background-color: var(--bg);
+  background-image: radial-gradient(circle, var(--dot-color) 0.6px, transparent 0.6px);
+  background-size: var(--dot-gap) var(--dot-gap);
+  border: 1px solid #ccc;
+  position: relative;
+  font-family: var(--font-body);
+  font-size: 8pt;
+  color: var(--black);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ---- Section titles ----
+   Each title sits in a 5mm row (one dot row).
+   Text is vertically centered via line-height.
+*/
+.title-accent {
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: 11pt;
+  color: var(--accent);
+  height: 5mm;
+  line-height: 5mm;
+  margin: 0;
+}
+
+.title-black {
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: 11pt;
+  color: var(--black);
+  height: 5mm;
+  line-height: 5mm;
+  margin: 0;
+}
+
+/* ---- Bordered box ----
+   5mm padding = one dot row/col of breathing room.
+*/
+.box {
+  border: 1.5px solid var(--black);
+  padding: 5mm;
+  background: transparent;
+}
+
+/* ---- Writing lines ----
+   5mm height = one dot row. Border at the bottom
+   lands exactly on the next dot row.
+*/
+.write-line {
+  border-bottom: 0.5px solid var(--line-gray);
+  height: 5mm;
+  width: 100%;
+}
+
+/* ---- Bullet line (accent circle + writing line) ----
+   5mm tall. Bullet dot centered vertically.
+*/
+.bullet-row {
+  display: flex;
+  align-items: center;
+  height: 5mm;
+  border-bottom: 0.5px solid var(--line-gray);
+}
+
+/* Bullet dot: 2.5mm circle centered in the 5mm row.
+   margin-right: 2.5mm keeps the next element starting
+   at the 5mm mark from the left of the bullet area. */
+.bullet-dot {
+  width: 2.5mm;
+  height: 2.5mm;
+  border: 1px solid var(--accent);
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-right: 2.5mm;
+}
+
+/* ---- Checkboxes ----
+   All checkboxes are 5mm × 5mm (one full dot cell).
+*/
+.cb-black {
+  width: 5mm;
+  height: 5mm;
+  border: 1px solid var(--black);
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.cb-accent {
+  width: 5mm;
+  height: 5mm;
+  border: 1px solid var(--accent);
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+/* Small accent checkbox: 2.5mm centered in a 5mm cell */
+.cb-accent-sm {
+  width: 2.5mm;
+  height: 2.5mm;
+  border: 1px solid var(--accent);
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+/* ---- Color picker bar (screen only) ---- */
+.color-picker-bar {
+  text-align: center;
+  padding: 10px;
+  font-family: sans-serif;
+  font-size: 14px;
+  background: #f5f5f5;
+  margin-bottom: 10px;
+}
+
+.color-picker-bar label {
+  margin-right: 8px;
+  font-weight: bold;
+}
+
+.color-picker-bar input[type="color"] {
+  width: 40px;
+  height: 30px;
+  border: none;
+  cursor: pointer;
+  vertical-align: middle;
+}
+
+/* ---- Page label (screen only) ---- */
+.page-label {
+  text-align: center;
+  font-size: 10pt;
+  color: var(--gray);
+  margin: 15px 0 8px 0;
+  font-style: italic;
+  font-family: sans-serif;
+}
+
+/* ---- Print styles ---- */
+@media print {
+  body {
+    margin: 0;
+    padding: 0;
+    background: white;
+  }
+  .page {
+    margin: 0;
+    border: none;
+    page-break-after: always;
+  }
+  .color-picker-bar,
+  .page-label {
+    display: none;
+  }
+}

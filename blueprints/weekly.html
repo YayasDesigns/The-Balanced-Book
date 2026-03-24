@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Balanced Book — Weekly Pages</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /*
+      WEEKLY FRONT — Grid-aligned layout (all multiples of 5mm):
+      Content area: 133mm × 200mm.
+      "Week of:" header: 10mm
+      "Goals and Priorities" title: 5mm
+      Goals box: 40mm (5pad + 5title-space + 5×5 bullet lines + 5pad)
+      Gap: 5mm
+      "Habit Tracker" title: 5mm
+      Day headers: 5mm
+      7 habit rows × 10mm: 70mm
+      Gap: 5mm
+      "Next Week" title: 5mm
+      Remaining lines: 40mm (8 × 5mm lines)
+      Total: 10+5+40+5+5+5+70+5+5+40 = 190mm + 10mm flex
+    */
+
+    /* ---- Weekly header ---- */
+    .week-header {
+      font-family: var(--font-heading);
+      font-style: italic;
+      font-size: 10pt;
+      color: var(--black);
+      height: 10mm;
+      line-height: 10mm;
+    }
+
+    .week-header .fill-line {
+      border-bottom: 1px solid var(--black);
+      display: inline-block;
+      width: 40mm;
+      margin-left: 5mm;
+    }
+
+    /* ---- Goals box ---- */
+    .goals-box {
+      border: 1.5px solid var(--black);
+      padding: 5mm;
+      height: 40mm;
+    }
+
+    /* ---- Habit Tracker ---- */
+    .habit-section {
+      margin-top: 5mm;
+    }
+
+    .habit-day-headers {
+      display: flex;
+      justify-content: flex-end;
+      height: 5mm;
+      line-height: 5mm;
+    }
+
+    .habit-day-headers span {
+      width: 10mm;
+      text-align: center;
+      font-size: 8pt;
+      font-weight: bold;
+      color: var(--black);
+    }
+
+    .habit-row {
+      display: flex;
+      align-items: center;
+      height: 10mm;
+      border-bottom: 0.5px solid var(--line-gray);
+    }
+
+    /* Purple checkbox + line for habit name */
+    .habit-label {
+      display: flex;
+      align-items: center;
+      gap: 2.5mm;
+      flex: 1;
+    }
+
+    .habit-label .habit-line {
+      flex: 1;
+      border-bottom: 0.5px solid var(--line-gray);
+      height: 5mm;
+    }
+
+    /* 7 day checkboxes, each in a 10mm cell */
+    .habit-days {
+      display: flex;
+    }
+
+    .habit-days .day-cell {
+      width: 10mm;
+      height: 10mm;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ---- Next Week section ---- */
+    .next-week {
+      margin-top: 5mm;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /*
+      WEEKLY BACK — Grid-aligned layout:
+      "Acts of Kindness" title: 10mm
+      Two-column box: 75mm
+      Gap: 5mm
+      "Self Reflections" title: 5mm
+      Day headers: 5mm
+      2 rows × 10mm: 20mm
+      Gap: 5mm
+      "Open Notes" title: 5mm
+      Lines: remaining ~70mm
+    */
+
+    /* ---- Acts of Kindness & Biggest Wins ---- */
+    .kindness-wins-box {
+      border: 1.5px solid var(--black);
+      padding: 5mm;
+      display: flex;
+      gap: 0;
+      height: 75mm;
+    }
+
+    .kindness-wins-box .col {
+      flex: 1;
+      padding: 0 5mm;
+    }
+
+    .kindness-wins-box .divider {
+      width: 1.5px;
+      background: var(--black);
+      flex-shrink: 0;
+    }
+
+    /* Title spanning top of the box, 10mm for long text */
+    .title-accent-lg {
+      font-family: var(--font-heading);
+      font-style: italic;
+      font-size: 11pt;
+      color: var(--accent);
+      height: 10mm;
+      line-height: 10mm;
+      margin: 0;
+    }
+
+    /* ---- Self Reflections grid ---- */
+    .reflections-section {
+      margin-top: 5mm;
+    }
+
+    .reflections-day-headers {
+      display: flex;
+      margin-left: 10mm; /* offset past the row checkbox */
+      height: 5mm;
+      line-height: 5mm;
+    }
+
+    .reflections-day-headers span {
+      width: 10mm;
+      text-align: center;
+      font-size: 7pt;
+      font-weight: bold;
+      color: var(--black);
+    }
+
+    .reflections-row {
+      display: flex;
+      align-items: center;
+      height: 10mm;
+    }
+
+    .reflections-row .cb-black {
+      margin-right: 5mm;
+    }
+
+    .reflections-cells {
+      display: flex;
+    }
+
+    .reflections-cells .r-cell {
+      width: 10mm;
+      height: 10mm;
+      border: 0.5px solid var(--black);
+    }
+
+    /* ---- Open Notes ---- */
+    .open-notes {
+      margin-top: 5mm;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .notes-lines {
+      flex: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Color Customizer -->
+  <div class="color-picker-bar">
+    <label>Accent Color:</label>
+    <input type="color" id="accentPicker" value="#7B2D8E"
+           onchange="document.documentElement.style.setProperty('--accent', this.value)">
+  </div>
+
+  <!-- ==================== WEEKLY — FRONT ==================== -->
+  <div class="page-label">WEEKLY — FRONT</div>
+  <div class="page">
+
+    <!-- Week of: header (10mm) -->
+    <div class="week-header">
+      Week of:<span class="fill-line"></span>
+    </div>
+
+    <!-- Goals and Priorities title (5mm) -->
+    <div class="title-accent">Goals and Priorities</div>
+
+    <!-- Goals box (40mm: 5pad + 6×5mm rows + 5pad) -->
+    <div class="goals-box">
+      <div class="bullet-row"><span class="bullet-dot"></span></div>
+      <div class="bullet-row"><span class="bullet-dot"></span></div>
+      <div class="bullet-row"><span class="bullet-dot"></span></div>
+      <div class="bullet-row"><span class="bullet-dot"></span></div>
+      <div class="bullet-row"><span class="bullet-dot"></span></div>
+      <div class="bullet-row"><span class="bullet-dot"></span></div>
+    </div>
+
+    <!-- Habit Tracker (margin-top 5mm) -->
+    <div class="habit-section">
+      <div class="title-accent">Habit Tracker</div>
+
+      <!-- Day headers (5mm) -->
+      <div class="habit-day-headers">
+        <span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span>
+      </div>
+
+      <!-- 7 habit rows (10mm each = 70mm) -->
+      <div class="habit-row">
+        <div class="habit-label"><div class="cb-accent-sm"></div><div class="habit-line"></div></div>
+        <div class="habit-days">
+          <div class="day-cell"><div class="cb-black"></div></div>
+          <div class="day-cell"><div class="cb-black"></div></div>
+          <div class="day-cell"><div class="cb-black"></div></div>
+          <div class="day-cell"><div class="cb-black"></div></div>
+          <div class="day-cell"><div class="cb-black"></div></div>
+          <div class="day-cell"><div class="cb-black"></div></div>
+          <div class="day-cell"><div class="cb-black"></div></div>
+        </div>
+      </div>
+      <div class="habit-row">
+        <div class="habit-label"><div class="cb-accent-sm"></div><div class="habit-line"></div></div>
+        <div class="habit-days">
+          <div class="day-cell"><div class="cb-black"></div></div>
+          <div class="day-cell"><div class="cb-black"></div></div>
+          <div class="day-cell"><div class="cb-black"></div></div>
+          <div class="day-cell"><div class="cb-black"></div></div>
+          <div class="day-cell"><div class="cb-black"></div></div>
+          <div class="day-cell"><div class="cb-black"></div></div>
+          <div class="day-cell"><div class="cb-black"></div></div>
+        </div>
+      </div>
+      <div class="habit-row">
+        <div class="habit-label"><div class="cb-accent-sm"></div><div class="habit-line"></div></div>
+        <div class="habit-days">
+          <div class="day-cell"><div class="cb-black"></div></div>
+          <div class="day-cell"><div class="cb-black"></div></div>
+          <div class="day-cell"><div class="cb-black"></div></div>
+          <div class="day-cell"><div class="cb-black"></div></div>
+          <div class="day-cell"><div class="cb-black"></div></div>
+          <div class="day-cell"><div class="cb-black"></div></div>
+          <div class="day-cell"><div class="cb-black"></div></div>
+        </div>
+      </div>
+      <div class="habit-row">
+        <div class="habit-label"><div class="cb-accent-sm"></div><div class="habit-line"></div></div>
+        <div class="habit-days">
+          <div class="day-cell"><div class="cb-black"></div></div>
+          <div class="day-cell"><div class="cb-black"></div></div>
+          <div class="day-cell"><div class="cb-black"></div></div>
+          <div class="day-cell"><div class="cb-black"></div></div>
+          <div class="day-cell"><div class="cb-black"></div></div>
+          <div class="day-cell"><div class="cb-black"></div></div>
+          <div class="day-cell"><div class="cb-black"></div></div>
+        </div>
+      </div>
+      <div class="habit-row">
+        <div class="habit-label"><div class="cb-accent-sm"></div><div class="habit-line"></div></div>
+        <div class="habit-days">
+          <div class="day-cell"><div class="cb-black"></div></div>
+          <div class="day-cell"><div class="cb-black"></div></div>
+          <div class="day-cell"><div class="cb-black"></div></div>
+          <div class="day-cell"><div class="cb-black"></div></div>
+          <div class="day-cell"><div class="cb-black"></div></div>
+          <div class="day-cell"><div class="cb-black"></div></div>
+          <div class="day-cell"><div class="cb-black"></div></div>
+        </div>
+      </div>
+      <div class="habit-row">
+        <div class="habit-label"><div class="cb-accent-sm"></div><div class="habit-line"></div></div>
+        <div class="habit-days">
+          <div class="day-cell"><div class="cb-black"></div></div>
+          <div class="day-cell"><div class="cb-black"></div></div>
+          <div class="day-cell"><div class="cb-black"></div></div>
+          <div class="day-cell"><div class="cb-black"></div></div>
+          <div class="day-cell"><div class="cb-black"></div></div>
+          <div class="day-cell"><div class="cb-black"></div></div>
+          <div class="day-cell"><div class="cb-black"></div></div>
+        </div>
+      </div>
+      <div class="habit-row">
+        <div class="habit-label"><div class="cb-accent-sm"></div><div class="habit-line"></div></div>
+        <div class="habit-days">
+          <div class="day-cell"><div class="cb-black"></div></div>
+          <div class="day-cell"><div class="cb-black"></div></div>
+          <div class="day-cell"><div class="cb-black"></div></div>
+          <div class="day-cell"><div class="cb-black"></div></div>
+          <div class="day-cell"><div class="cb-black"></div></div>
+          <div class="day-cell"><div class="cb-black"></div></div>
+          <div class="day-cell"><div class="cb-black"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Next Week's Goals and Priorities -->
+    <div class="next-week">
+      <div class="title-accent">Next Week's Goals and Priorities</div>
+      <div class="notes-lines">
+        <div class="write-line"></div>
+        <div class="write-line"></div>
+        <div class="write-line"></div>
+        <div class="write-line"></div>
+        <div class="write-line"></div>
+        <div class="write-line"></div>
+        <div class="write-line"></div>
+        <div class="write-line"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ==================== WEEKLY — BACK ==================== -->
+  <div class="page-label">WEEKLY — BACK</div>
+  <div class="page">
+
+    <!-- Acts of Kindness & Biggest Wins -->
+    <div class="title-accent-lg">Acts of Kindness &amp; Biggest Wins</div>
+    <div class="kindness-wins-box">
+      <!-- Left column: Acts of Kindness -->
+      <div class="col">
+        <div class="bullet-row"><span class="bullet-dot"></span></div>
+        <div class="bullet-row"><span class="bullet-dot"></span></div>
+        <div class="bullet-row"><span class="bullet-dot"></span></div>
+        <div class="bullet-row"><span class="bullet-dot"></span></div>
+        <div class="bullet-row"><span class="bullet-dot"></span></div>
+        <div class="bullet-row"><span class="bullet-dot"></span></div>
+      </div>
+      <!-- Vertical divider -->
+      <div class="divider"></div>
+      <!-- Right column: Biggest Wins -->
+      <div class="col">
+        <div class="bullet-row"><span class="bullet-dot"></span></div>
+        <div class="bullet-row"><span class="bullet-dot"></span></div>
+        <div class="bullet-row"><span class="bullet-dot"></span></div>
+        <div class="bullet-row"><span class="bullet-dot"></span></div>
+        <div class="bullet-row"><span class="bullet-dot"></span></div>
+        <div class="bullet-row"><span class="bullet-dot"></span></div>
+      </div>
+    </div>
+
+    <!-- Self Reflections -->
+    <div class="reflections-section">
+      <div class="title-accent">Self Reflections</div>
+
+      <!-- Day headers -->
+      <div class="reflections-day-headers">
+        <span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span>
+      </div>
+
+      <!-- Row 1 -->
+      <div class="reflections-row">
+        <div class="cb-black"></div>
+        <div class="reflections-cells">
+          <div class="r-cell"></div>
+          <div class="r-cell"></div>
+          <div class="r-cell"></div>
+          <div class="r-cell"></div>
+          <div class="r-cell"></div>
+          <div class="r-cell"></div>
+          <div class="r-cell"></div>
+        </div>
+      </div>
+
+      <!-- Row 2 -->
+      <div class="reflections-row">
+        <div class="cb-black"></div>
+        <div class="reflections-cells">
+          <div class="r-cell"></div>
+          <div class="r-cell"></div>
+          <div class="r-cell"></div>
+          <div class="r-cell"></div>
+          <div class="r-cell"></div>
+          <div class="r-cell"></div>
+          <div class="r-cell"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Open Notes -->
+    <div class="open-notes">
+      <div class="title-accent">Open Notes</div>
+      <div class="notes-lines">
+        <div class="write-line"></div>
+        <div class="write-line"></div>
+        <div class="write-line"></div>
+        <div class="write-line"></div>
+        <div class="write-line"></div>
+        <div class="write-line"></div>
+        <div class="write-line"></div>
+        <div class="write-line"></div>
+        <div class="write-line"></div>
+        <div class="write-line"></div>
+        <div class="write-line"></div>
+        <div class="write-line"></div>
+        <div class="write-line"></div>
+        <div class="write-line"></div>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

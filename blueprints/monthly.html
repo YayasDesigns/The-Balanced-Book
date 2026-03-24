@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Balanced Book — Monthly Page</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /*
+      MONTHLY PAGE GRID ALIGNMENT:
+      Page padding: 10mm top (so grid fits in 7 × 25mm rows).
+      Content area: 133mm wide × 195mm tall.
+      Header: 20mm (4 dot rows).
+      Grid: 175mm = 7 rows × 25mm each.
+      Columns: day-name 15mm + 5 data cols × 20mm = 115mm.
+      Arrow space: 18mm right of grid.
+    */
+    .page.monthly {
+      padding-top: 10mm;
+    }
+
+    /* ---- Monthly header ---- */
+    .monthly-header {
+      height: 20mm;
+      display: flex;
+      align-items: center;
+      gap: 5mm;
+      margin-left: 20mm; /* align with data grid, past day-name column */
+    }
+
+    .monthly-header .present-label {
+      font-family: var(--font-heading);
+      font-style: italic;
+      font-size: 18pt;
+      color: var(--black);
+      white-space: nowrap;
+    }
+
+    .monthly-header .month-box {
+      border: 1.5px solid var(--accent);
+      flex: 1;
+      height: 10mm;
+    }
+
+    /* ---- Grid wrapper ---- */
+    .grid-wrapper {
+      flex: 1;
+      position: relative;
+      /* 18mm margin-right for arrows to extend into */
+      margin-right: 18mm;
+    }
+
+    /* ---- Calendar grid ---- */
+    .monthly-grid {
+      width: 100%;
+      height: 100%;
+      border-collapse: collapse;
+      border: 1.5px solid var(--black);
+      border-left: none;
+      border-top: none;
+      border-bottom: none;
+      table-layout: fixed;
+    }
+
+    /* Restore outer top/bottom borders on data cells only */
+    .monthly-grid tr:first-child td {
+      border-top: 1.5px solid var(--black);
+    }
+    .monthly-grid tr:last-child td {
+      border-bottom: 1.5px solid var(--black);
+    }
+
+    /* Day name column — vertical text, bottom-to-top, 14pt like "Present" */
+    .monthly-grid th {
+      font-family: var(--font-heading);
+      font-style: italic;
+      font-size: 14pt;
+      font-weight: normal;
+      color: var(--accent);
+      text-align: center;
+      padding: 0 10mm 0 0;
+      border: none;
+      border-right: 1px solid var(--black);
+      width: 15mm;
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      vertical-align: middle;
+      /* Half-width line at visual bottom of each th cell.
+         Due to 180deg rotation: CSS left-top → visual right-bottom.
+         Gradient: CSS left=black → visual right=black (near grid line). */
+      background-image: linear-gradient(to right, var(--black) 50%, transparent 50%);
+      background-size: 100% 1px;
+      background-position: left top;
+      background-repeat: no-repeat;
+    }
+
+    /* First th (Saturday): also needs a half-line at the visual top (CSS bottom) */
+    .monthly-grid tr:first-child th {
+      background-image:
+        linear-gradient(to right, var(--black) 50%, transparent 50%),
+        linear-gradient(to right, var(--black) 50%, transparent 50%);
+      background-size: 100% 1px, 100% 1px;
+      background-position: left top, left bottom;
+      background-repeat: no-repeat, no-repeat;
+    }
+
+    /* Data cells — 20mm wide × 25mm tall */
+    .monthly-grid td {
+      border: 1px solid var(--black);
+      padding: 0;
+      vertical-align: middle;
+      text-align: center;
+      width: 20mm;
+      height: 25mm;
+    }
+
+
+    /* Cell content: positioned checkboxes */
+    .cell-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Small square checkbox: 5mm × 5mm, top-left corner */
+    .cb-square {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 5mm;
+      height: 5mm;
+      border: 1px solid var(--accent);
+    }
+
+    /* Larger rectangle: 7.5mm × 12.5mm, off-center right, vertically centered */
+    .cb-rect {
+      position: absolute;
+      top: 7.5mm;
+      right: 5mm;
+      width: 7.5mm;
+      height: 12.5mm;
+      border: 1px solid var(--accent);
+    }
+
+    /* ---- Arrows extending from every horizontal grid line ---- */
+    .monthly-grid td:last-child {
+      position: relative;
+    }
+
+    /* Arrow line at TOP edge of each cell (= row separator) */
+    .monthly-grid td:last-child::after {
+      content: '';
+      position: absolute;
+      top: -1px;
+      left: 100%;
+      width: 15mm;
+      border-top: 1px solid var(--black);
+    }
+
+    /* Arrowhead at tip */
+    .monthly-grid td:last-child::before {
+      content: '';
+      position: absolute;
+      top: -4.5px;
+      left: calc(100% + 15mm);
+      width: 0;
+      height: 0;
+      border-top: 4px solid transparent;
+      border-bottom: 4px solid transparent;
+      border-left: 6px solid var(--black);
+    }
+
+    /* Bottom border arrow for the very last row */
+    .arrow-bottom-line {
+      position: absolute;
+      bottom: -1px;
+      left: 100%;
+      width: 15mm;
+      border-top: 1px solid var(--black);
+    }
+
+    .arrow-bottom-head {
+      position: absolute;
+      bottom: -4.5px;
+      left: calc(100% + 15mm);
+      width: 0;
+      height: 0;
+      border-top: 4px solid transparent;
+      border-bottom: 4px solid transparent;
+      border-left: 6px solid var(--black);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Color Customizer (screen only) -->
+  <div class="color-picker-bar">
+    <label>Accent Color:</label>
+    <input type="color" id="accentPicker" value="#7B2D8E"
+           onchange="document.documentElement.style.setProperty('--accent', this.value)">
+    <span style="margin-left: 12px; font-size: 12px; color: #888;">
+      Change accent color to preview different options
+    </span>
+  </div>
+
+  <div class="page-label">MONTHLY PAGE</div>
+  <div class="page monthly" style="overflow: visible;">
+    <!-- Header: 20mm tall -->
+    <div class="monthly-header">
+      <span class="present-label">Present :</span>
+      <div class="month-box"></div>
+    </div>
+
+    <!-- Calendar grid: Sat (top) → Sun (bottom), 5 week columns -->
+    <div class="grid-wrapper">
+      <table class="monthly-grid">
+        <tbody>
+          <!-- Row 1: Saturday -->
+          <tr>
+            <th>Saturday</th>
+            <td><div class="cell-inner"><div class="cb-square"></div><div class="cb-rect"></div></div></td>
+            <td><div class="cell-inner"><div class="cb-square"></div><div class="cb-rect"></div></div></td>
+            <td><div class="cell-inner"><div class="cb-square"></div><div class="cb-rect"></div></div></td>
+            <td><div class="cell-inner"><div class="cb-square"></div><div class="cb-rect"></div></div></td>
+            <td><div class="cell-inner"><div class="cb-square"></div><div class="cb-rect"></div></div></td>
+          </tr>
+          <!-- Row 2: Friday -->
+          <tr>
+            <th>Friday</th>
+            <td><div class="cell-inner"><div class="cb-square"></div><div class="cb-rect"></div></div></td>
+            <td><div class="cell-inner"><div class="cb-square"></div><div class="cb-rect"></div></div></td>
+            <td><div class="cell-inner"><div class="cb-square"></div><div class="cb-rect"></div></div></td>
+            <td><div class="cell-inner"><div class="cb-square"></div><div class="cb-rect"></div></div></td>
+            <td><div class="cell-inner"><div class="cb-square"></div><div class="cb-rect"></div></div></td>
+          </tr>
+          <!-- Row 3: Thursday -->
+          <tr>
+            <th>Thursday</th>
+            <td><div class="cell-inner"><div class="cb-square"></div><div class="cb-rect"></div></div></td>
+            <td><div class="cell-inner"><div class="cb-square"></div><div class="cb-rect"></div></div></td>
+            <td><div class="cell-inner"><div class="cb-square"></div><div class="cb-rect"></div></div></td>
+            <td><div class="cell-inner"><div class="cb-square"></div><div class="cb-rect"></div></div></td>
+            <td><div class="cell-inner"><div class="cb-square"></div><div class="cb-rect"></div></div></td>
+          </tr>
+          <!-- Row 4: Wednesday -->
+          <tr>
+            <th>Wednesday</th>
+            <td><div class="cell-inner"><div class="cb-square"></div><div class="cb-rect"></div></div></td>
+            <td><div class="cell-inner"><div class="cb-square"></div><div class="cb-rect"></div></div></td>
+            <td><div class="cell-inner"><div class="cb-square"></div><div class="cb-rect"></div></div></td>
+            <td><div class="cell-inner"><div class="cb-square"></div><div class="cb-rect"></div></div></td>
+            <td><div class="cell-inner"><div class="cb-square"></div><div class="cb-rect"></div></div></td>
+          </tr>
+          <!-- Row 5: Tuesday -->
+          <tr>
+            <th>Tuesday</th>
+            <td><div class="cell-inner"><div class="cb-square"></div><div class="cb-rect"></div></div></td>
+            <td><div class="cell-inner"><div class="cb-square"></div><div class="cb-rect"></div></div></td>
+            <td><div class="cell-inner"><div class="cb-square"></div><div class="cb-rect"></div></div></td>
+            <td><div class="cell-inner"><div class="cb-square"></div><div class="cb-rect"></div></div></td>
+            <td><div class="cell-inner"><div class="cb-square"></div><div class="cb-rect"></div></div></td>
+          </tr>
+          <!-- Row 6: Monday -->
+          <tr>
+            <th>Monday</th>
+            <td><div class="cell-inner"><div class="cb-square"></div><div class="cb-rect"></div></div></td>
+            <td><div class="cell-inner"><div class="cb-square"></div><div class="cb-rect"></div></div></td>
+            <td><div class="cell-inner"><div class="cb-square"></div><div class="cb-rect"></div></div></td>
+            <td><div class="cell-inner"><div class="cb-square"></div><div class="cb-rect"></div></div></td>
+            <td><div class="cell-inner"><div class="cb-square"></div><div class="cb-rect"></div></div></td>
+          </tr>
+          <!-- Row 7: Sunday -->
+          <tr>
+            <th>Sunday</th>
+            <td><div class="cell-inner"><div class="cb-square"></div><div class="cb-rect"></div></div></td>
+            <td><div class="cell-inner"><div class="cb-square"></div><div class="cb-rect"></div></div></td>
+            <td><div class="cell-inner"><div class="cb-square"></div><div class="cb-rect"></div></div></td>
+            <td><div class="cell-inner"><div class="cb-square"></div><div class="cb-rect"></div></div></td>
+            <td>
+              <div class="cell-inner"><div class="cb-square"></div><div class="cb-rect"></div></div>
+              <!-- Bottom border arrow for last row -->
+              <span class="arrow-bottom-line"></span>
+              <span class="arrow-bottom-head"></span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</body>
+</html>
