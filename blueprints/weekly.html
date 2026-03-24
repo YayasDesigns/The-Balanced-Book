@@ -22,6 +22,15 @@
       Total: 10+5+40+5+5+5+70+5+5+40 = 190mm + 10mm flex
     */
 
+    /* ---- Shift all content 5mm right on both pages ---- */
+    .weekly-front {
+      padding-left: 15mm; /* 10mm spiral + 5mm extra */
+    }
+    .weekly-back {
+      padding-left: 5mm;   /* 5mm less than default 10mm spiral */
+      padding-right: 15mm;
+    }
+
     /* ---- Weekly header ---- */
     .week-header {
       font-family: var(--font-heading);
@@ -216,7 +225,7 @@
 
   <!-- ==================== WEEKLY — FRONT ==================== -->
   <div class="page-label">WEEKLY — FRONT</div>
-  <div class="page">
+  <div class="page weekly-front">
 
     <!-- Week of: header (10mm) -->
     <div class="week-header">
@@ -347,7 +356,7 @@
 
   <!-- ==================== WEEKLY — BACK ==================== -->
   <div class="page-label">WEEKLY — BACK</div>
-  <div class="page">
+  <div class="page weekly-back">
 
     <!-- Acts of Kindness & Biggest Wins -->
     <div class="title-accent-lg">Acts of Kindness &amp; Biggest Wins</div>
