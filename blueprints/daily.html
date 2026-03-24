@@ -24,6 +24,11 @@
       Total: 10+35+5+25+5+5+35+5+30+5+30+5 = 200mm ✓
     */
 
+    /* ---- Daily front: match weekly front padding ---- */
+    .daily-front {
+      padding-left: 15mm;
+    }
+
     /* ---- Daily header ---- */
     .daily-header {
       display: flex;
@@ -50,10 +55,18 @@
 
     .day-letters {
       display: flex;
-      gap: 5mm;
+      gap: 0;
       font-size: 9pt;
       font-weight: bold;
       color: var(--black);
+    }
+
+    .day-letters span {
+      width: 5mm;
+      height: 5mm;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     /* ---- Content boxes ---- */
@@ -204,12 +217,14 @@
 
   <!-- ==================== DAILY — FRONT ==================== -->
   <div class="page-label">DAILY — FRONT</div>
-  <div class="page">
+  <div class="page daily-front">
 
     <!-- Date header (10mm) -->
     <div class="daily-header">
       <div class="date-area">
         <span>Date</span>
+        <span class="date-fill"></span>
+        <span>/</span>
         <span class="date-fill"></span>
         <span>/</span>
         <span class="date-fill"></span>
@@ -219,9 +234,11 @@
       </div>
     </div>
 
-    <!-- Gratitude box (35mm: 5pad + 5title + 4×5 lines + 5pad) -->
-    <div class="daily-box" style="height: 35mm;">
-      <div class="title-black">Gratitude...</div>
+    <!-- Gratitude box -->
+    <div class="daily-box" style="height: 45mm; padding-top: 2.5mm;">
+      <div class="title-black" style="height: 5mm; line-height: 5mm;">Gratitude...</div>
+      <div class="write-line"></div>
+      <div class="write-line"></div>
       <div class="write-line"></div>
       <div class="write-line"></div>
       <div class="write-line"></div>
