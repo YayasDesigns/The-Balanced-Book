@@ -133,32 +133,52 @@
     /* ---- Acts of Kindness & Biggest Wins ---- */
     .kindness-wins-box {
       border: 1.5px solid var(--black);
-      padding: 5mm;
+      padding: 0 5mm 5mm 5mm;
+      height: 60mm;
       display: flex;
-      gap: 0;
-      height: 75mm;
+      flex-direction: column;
     }
 
-    .kindness-wins-box .col {
-      flex: 1;
-      padding: 0 5mm;
-    }
-
-    .kindness-wins-box .divider {
-      width: 1.5px;
-      background: var(--black);
-      flex-shrink: 0;
-    }
-
-    /* Title spanning top of the box, 10mm for long text */
-    .title-accent-lg {
+    .kindness-wins-title {
       font-family: var(--font-heading);
       font-style: italic;
       font-size: 14pt;
       color: var(--accent);
       height: 10mm;
       line-height: 10mm;
-      margin: 0;
+      margin: -1px -5mm 0 -5mm;
+      padding-left: 5mm;
+      border-bottom: 1.5px solid var(--black);
+    }
+
+    .kindness-wins-columns {
+      display: flex;
+      flex: 1;
+      gap: 0;
+    }
+
+    .kindness-wins-columns .col {
+      flex: 1;
+      padding: 0;
+    }
+
+    .kindness-wins-columns .divider {
+      width: 1.5px;
+      background: var(--black);
+      flex-shrink: 0;
+      margin-left: 5mm;
+    }
+
+    .kindness-wins-columns .divider-after {
+      margin-left: 0;
+    }
+
+
+    /* Open dot rows — 10mm tall, no writing lines */
+    .dot-row {
+      height: 10mm;
+      display: flex;
+      align-items: center;
     }
 
     /* ---- Self Reflections grid ---- */
@@ -359,27 +379,32 @@
   <div class="page weekly-back">
 
     <!-- Acts of Kindness & Biggest Wins -->
-    <div class="title-accent-lg">Acts of Kindness &amp; Biggest Wins</div>
     <div class="kindness-wins-box">
-      <!-- Left column: Acts of Kindness -->
-      <div class="col">
-        <div class="bullet-row"><span class="bullet-dot"></span></div>
-        <div class="bullet-row"><span class="bullet-dot"></span></div>
-        <div class="bullet-row"><span class="bullet-dot"></span></div>
-        <div class="bullet-row"><span class="bullet-dot"></span></div>
-        <div class="bullet-row"><span class="bullet-dot"></span></div>
-        <div class="bullet-row"><span class="bullet-dot"></span></div>
-      </div>
-      <!-- Vertical divider -->
-      <div class="divider"></div>
-      <!-- Right column: Biggest Wins -->
-      <div class="col">
-        <div class="bullet-row"><span class="bullet-dot"></span></div>
-        <div class="bullet-row"><span class="bullet-dot"></span></div>
-        <div class="bullet-row"><span class="bullet-dot"></span></div>
-        <div class="bullet-row"><span class="bullet-dot"></span></div>
-        <div class="bullet-row"><span class="bullet-dot"></span></div>
-        <div class="bullet-row"><span class="bullet-dot"></span></div>
+      <!-- Title inside the box -->
+      <div class="kindness-wins-title">Acts of Kindness &amp; Biggest Wins</div>
+      <div class="kindness-wins-columns">
+        <!-- Divider before left circles -->
+        <div class="divider divider-after"></div>
+        <!-- Left column -->
+        <div class="col">
+          <div class="dot-row"><span class="bullet-dot"></span></div>
+          <div class="dot-row"><span class="bullet-dot"></span></div>
+          <div class="dot-row"><span class="bullet-dot"></span></div>
+          <div class="dot-row"><span class="bullet-dot"></span></div>
+          <div class="dot-row"><span class="bullet-dot"></span></div>
+        </div>
+        <!-- Divider after left circles -->
+        <div class="divider divider-after"></div>
+        <!-- Vertical divider -->
+        <div class="divider"></div>
+        <!-- Right column -->
+        <div class="col">
+          <div class="dot-row"><span class="bullet-dot"></span></div>
+          <div class="dot-row"><span class="bullet-dot"></span></div>
+          <div class="dot-row"><span class="bullet-dot"></span></div>
+          <div class="dot-row"><span class="bullet-dot"></span></div>
+          <div class="dot-row"><span class="bullet-dot"></span></div>
+        </div>
       </div>
     </div>
 
