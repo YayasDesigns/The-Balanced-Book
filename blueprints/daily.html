@@ -92,12 +92,54 @@
 
     /* ---- DAILY BACK ---- */
 
+    /* Quote area at top */
+    .quote-area {
+      height: 35mm;
+      position: relative;
+      padding: 0 5mm 0 5mm;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .quote-marks {
+      display: flex;
+      justify-content: space-between;
+      height: 7.5mm;
+    }
+
+    .quote-mark {
+      font-family: var(--font-heading);
+      font-size: 28pt;
+      color: var(--accent);
+      line-height: 0.6;
+    }
+
+    .quote-text {
+      font-family: var(--font-heading);
+      font-style: italic;
+      font-size: 11pt;
+      color: var(--accent);
+      margin-left: 5mm;
+      margin-right: 5mm;
+      line-height: 1.4;
+    }
+
+    .quote-author {
+      font-family: var(--font-heading);
+      font-size: 9pt;
+      color: var(--accent);
+      text-align: right;
+      margin-right: 5mm;
+      margin-top: 1.5mm;
+    }
+
     /* Reflections box */
     .reflections-box {
       border: 1.5px solid var(--black);
       padding: 5mm;
       position: relative;
-      height: 115mm;
+      height: 80mm;
     }
 
     .reflection-item {
@@ -288,7 +330,17 @@
   <div class="page-label">DAILY — BACK</div>
   <div class="page">
 
-    <!-- Reflections box (115mm, with SARE chart inside) -->
+    <!-- Inspirational Quote (changes per daily page — see quote vault in script) -->
+    <div class="quote-area">
+      <div class="quote-marks">
+        <div class="quote-mark">&ldquo;</div>
+        <div class="quote-mark">&rdquo;</div>
+      </div>
+      <div class="quote-text" id="quoteText">Loading quote...</div>
+      <div class="quote-author" id="quoteAuthor"></div>
+    </div>
+
+    <!-- Reflections box (90mm, with SARE chart inside) -->
     <div class="reflections-box">
       <div class="title-black" style="margin-bottom: 0;">Reflections...</div>
 
@@ -391,6 +443,86 @@
     </div>
 
   </div>
+
+  <!-- ==================== QUOTE VAULT (60 quotes for 60 daily pages) ==================== -->
+  <script>
+    const quoteVault = [
+      // --- Mindfulness & Wellness ---
+      { text: "Almost everything will work again if you unplug it for a few minutes, including you. Take the time to rest and recharge — it is not laziness, it is self-preservation.", author: "Anne Lamott" },
+      { text: "The present moment is filled with joy and happiness. If you are attentive, you will see it. Do not chase after your thoughts — instead, learn to watch them come and go like clouds in the sky.", author: "Thich Nhat Hanh" },
+      { text: "Feelings come and go like clouds in a windy sky. Conscious breathing is my anchor. When the storm passes, you realize you were always the sky, not the weather.", author: "Thich Nhat Hanh" },
+      { text: "Self-care is not self-indulgence, it is self-preservation. That is an act of political warfare. You cannot pour from an empty cup, so fill yours first.", author: "Audre Lorde" },
+      { text: "The greatest weapon against stress is our ability to choose one thought over another. In the middle of difficulty lies opportunity, and in the middle of stillness lies strength.", author: "William James" },
+      { text: "You don't have to control your thoughts. You just have to stop letting them control you. The mind is a wonderful servant but a terrible master.", author: "Dan Millman" },
+      { text: "With the new day comes new strength and new thoughts. Let yourself rest when you are tired, and rise again when you are ready. Every morning is a fresh beginning.", author: "Eleanor Roosevelt" },
+      { text: "Happiness is not something ready-made. It comes from your own actions. Small daily improvements over time lead to stunning results — begin where you are.", author: "Dalai Lama" },
+      { text: "Be where you are, not where you think you should be. The present moment is the only moment available to us, and it is the door to all moments.", author: "Thich Nhat Hanh" },
+      { text: "Calm mind brings inner strength and self-confidence, so that is very important for good health. The root of all health is in the brain, and the root of all healing is in the heart.", author: "Dalai Lama" },
+      { text: "Rest when you are weary. Refresh and renew yourself, your body, your mind, your spirit. Then get back to work. The world needs what you have to offer.", author: "Ralph Marston" },
+      { text: "Your calm mind is the ultimate weapon against your challenges. Do not underestimate the power of sitting quietly and letting the answers come to you in their own time.", author: "Bryant McGill" },
+      { text: "In today's rush, we all think too much, seek too much, want too much, and forget about the joy of just being. Sometimes the most productive thing you can do is relax.", author: "Eckhart Tolle" },
+      { text: "The soul always knows what to do to heal itself. The challenge is to silence the mind. Give yourself permission to slow down and listen to the wisdom within.", author: "Caroline Myss" },
+      { text: "Breathe. Let go. And remind yourself that this very moment is the only one you know you have for sure. Make it count by being fully present in it.", author: "Oprah Winfrey" },
+      // --- Motivational & Ambition ---
+      { text: "It is not the critic who counts. The credit belongs to the person who is actually in the arena, whose face is marred by dust and sweat and blood, who strives valiantly.", author: "Theodore Roosevelt" },
+      { text: "I have learned over the years that when one's mind is made up, this diminishes fear. Knowing what must be done does away with fear. Action is the antidote to despair.", author: "Rosa Parks" },
+      { text: "The future belongs to those who believe in the beauty of their dreams. Do not wait for the perfect moment — take the moment and make it perfect.", author: "Eleanor Roosevelt" },
+      { text: "Success is not final, failure is not fatal: it is the courage to continue that counts. Every setback is a setup for a comeback if you keep moving forward.", author: "Winston Churchill" },
+      { text: "You are never too old to set another goal or to dream a new dream. The best time to plant a tree was twenty years ago. The second best time is now.", author: "C.S. Lewis" },
+      { text: "It always seems impossible until it is done. Do not judge each day by the harvest you reap but by the seeds that you plant. Great things take time.", author: "Nelson Mandela" },
+      { text: "I can be changed by what happens to me, but I refuse to be reduced by it. There is no greater agony than bearing an untold story inside you — so speak your truth.", author: "Maya Angelou" },
+      { text: "We delight in the beauty of the butterfly, but rarely admit the changes it has gone through to achieve that beauty. Growth requires patience and faith in the process.", author: "Maya Angelou" },
+      { text: "Do not wait to strike till the iron is hot, but make it hot by striking. The people who get on in this world are the people who look for the circumstances they want, and if they cannot find them, they make them.", author: "George Bernard Shaw" },
+      { text: "The only impossible journey is the one you never begin. Have the courage to follow your heart and intuition — they somehow already know what you truly want to become.", author: "Tony Robbins" },
+      { text: "You gain strength, courage, and confidence by every experience in which you really stop to look fear in the face. You must do the thing you think you cannot do.", author: "Eleanor Roosevelt" },
+      { text: "What lies behind us and what lies before us are tiny matters compared to what lies within us. Trust yourself — you have survived a lot, and you will survive whatever is coming.", author: "Ralph Waldo Emerson" },
+      { text: "Life is not about waiting for the storm to pass. It is about learning to dance in the rain. Embrace the challenges, for they are shaping you into who you are meant to be.", author: "Vivian Greene" },
+      { text: "The question is not who is going to let me; it is who is going to stop me. Believe in yourself with such conviction that the world has no choice but to believe in you too.", author: "Ayn Rand" },
+      { text: "I am not what happened to me. I am what I choose to become. Every morning we are born again — what we do today is what matters most.", author: "Carl Jung" },
+      // --- Growth & Self-Improvement ---
+      { text: "The only person you are destined to become is the person you decide to be. It is never too late to be what you might have been. Start where you are, use what you have.", author: "Ralph Waldo Emerson" },
+      { text: "Do not be embarrassed by your failures. Learn from them and start again. Every expert was once a beginner, and every master was once a disaster. Keep going.", author: "Richard Branson" },
+      { text: "The beautiful thing about learning is that nobody can take it away from you. Invest in yourself — it pays the best interest, and it compounds over a lifetime.", author: "B.B. King" },
+      { text: "Challenges are what make life interesting, and overcoming them is what makes life meaningful. You were given this mountain to show others it can be moved.", author: "Joshua J. Marine" },
+      { text: "Growth is painful. Change is painful. But nothing is as painful as staying stuck somewhere you do not belong. Have the courage to let go of what no longer serves you.", author: "Mandy Hale" },
+      { text: "We cannot become what we want by remaining what we are. Progress is impossible without change, and those who cannot change their minds cannot change anything.", author: "Max De Pree" },
+      { text: "You do not have to be great to start, but you have to start to be great. The secret of getting ahead is getting started — break it into small steps and begin.", author: "Zig Ziglar" },
+      { text: "What you get by achieving your goals is not as important as what you become by achieving your goals. The journey shapes you far more than the destination ever will.", author: "Zig Ziglar" },
+      { text: "Your time is limited, so do not waste it living someone else's life. Have the courage to follow your heart and intuition — everything else is secondary.", author: "Steve Jobs" },
+      { text: "I have not failed. I have just found ten thousand ways that do not work. Our greatest weakness lies in giving up — the most certain way to succeed is always to try just one more time.", author: "Thomas Edison" },
+      // --- Kindness & Connection ---
+      { text: "No one has ever become poor by giving. Kindness is a language which the deaf can hear and the blind can see. The smallest act of kindness is worth more than the grandest intention.", author: "Anne Frank" },
+      { text: "Carry out a random act of kindness, with no expectation of reward, safe in the knowledge that one day someone might do the same for you. That is how we change the world.", author: "Princess Diana" },
+      { text: "Be kind, for everyone you meet is fighting a hard battle. A warm smile is the universal language of kindness. It costs nothing but creates much.", author: "Ian Maclaren" },
+      { text: "People will forget what you said, people will forget what you did, but people will never forget how you made them feel. Leave everyone a little better than you found them.", author: "Maya Angelou" },
+      { text: "Too often we underestimate the power of a touch, a smile, a kind word, a listening ear, or the smallest act of caring — all of which have the potential to turn a life around.", author: "Leo Buscaglia" },
+      // --- Gratitude & Perspective ---
+      { text: "When you arise in the morning, think of what a precious privilege it is to be alive — to breathe, to think, to enjoy, to love. Let gratitude be the first thing on your mind.", author: "Marcus Aurelius" },
+      { text: "Gratitude turns what we have into enough, and more. It turns denial into acceptance, chaos into order, confusion into clarity. It makes sense of our past and brings peace for today.", author: "Melody Beattie" },
+      { text: "Enjoy the little things, for one day you may look back and realize they were the big things. Life is not measured by the breaths we take, but by the moments that take our breath away.", author: "Robert Brault" },
+      { text: "When I started counting my blessings, my whole life turned around. Gratitude is not only the greatest of virtues, but the parent of all the others. It changes everything.", author: "Willie Nelson" },
+      { text: "The more you praise and celebrate your life, the more there is in life to celebrate. Wake up every morning and be thankful for what you have — not everyone was granted another day.", author: "Oprah Winfrey" },
+      // --- Courage & Resilience ---
+      { text: "Courage does not always roar. Sometimes courage is the quiet voice at the end of the day saying, 'I will try again tomorrow.' That quiet determination is the most powerful force there is.", author: "Mary Anne Radmacher" },
+      { text: "Fall seven times, stand up eight. The human spirit is stronger than anything that can happen to it. You are braver than you believe, stronger than you seem, and smarter than you think.", author: "Japanese Proverb" },
+      { text: "Rock bottom became the solid foundation on which I rebuilt my life. It does not matter how slowly you go as long as you do not stop. Keep moving forward.", author: "J.K. Rowling" },
+      { text: "You may encounter many defeats, but you must not be defeated. In fact, it may be necessary to encounter the defeats so you can know who you are and what you can rise from.", author: "Maya Angelou" },
+      { text: "Strength does not come from what you can do. It comes from overcoming the things you once thought you could not. Believe in your resilience — it has never failed you yet.", author: "Rikki Rogers" },
+      // --- Balance & Joy ---
+      { text: "Balance is not something you find, it is something you create. Life is a series of tiny adjustments. Give yourself grace when things feel off — the act of noticing is the first step back.", author: "Jana Kingsford" },
+      { text: "The most wasted of all days is one without laughter. Find joy in the ordinary, wonder in the mundane, and peace in the chaos. These small gifts are everywhere if you look.", author: "E.E. Cummings" },
+      { text: "Dwell on the beauty of life. Watch the stars, and see yourself running with them. Think of all the beauty still left around you and be happy. It is always there, waiting.", author: "Marcus Aurelius" },
+      { text: "You only live once, but if you do it right, once is enough. Fill your life with experiences, not things. Have stories to tell, not stuff to show.", author: "Mae West" },
+      { text: "The purpose of life is not to be happy. It is to be useful, to be honorable, to be compassionate, to have it make some difference that you have lived and lived well.", author: "Ralph Waldo Emerson" },
+    ];
+
+    // Show a quote — use URL param ?day=N (0-59) to pick a specific one, otherwise random
+    const params = new URLSearchParams(window.location.search);
+    const dayNum = params.has('day') ? parseInt(params.get('day')) % 60 : Math.floor(Math.random() * 60);
+    const quote = quoteVault[dayNum];
+    document.getElementById('quoteText').textContent = quote.text;
+    document.getElementById('quoteAuthor').textContent = '— ' + quote.author;
+  </script>
 
 </body>
 </html>
