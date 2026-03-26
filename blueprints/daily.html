@@ -91,6 +91,10 @@
     }
 
     /* ---- DAILY BACK ---- */
+    .daily-back {
+      padding-left: 5mm;
+      padding-right: 15mm;
+    }
 
     /* Quote area at top */
     .quote-area {
@@ -171,14 +175,11 @@
       margin-left: 5mm;
     }
 
-    /* ---- S.A.R.E. chart (inside Reflections, bottom-right) ---- */
+    /* ---- S.A.R.E. bar chart (inside Reflections, bottom-right) ---- */
     .sare-wrapper {
       position: absolute;
-      bottom: 5mm;
+      bottom: 0;
       right: 5mm;
-    }
-
-    .sare-layout {
       display: flex;
       align-items: flex-start;
     }
@@ -187,6 +188,7 @@
       display: flex;
       flex-direction: column;
       margin-right: 2.5mm;
+      width: 5mm;
     }
 
     .sare-labels span {
@@ -194,29 +196,40 @@
       display: flex;
       align-items: center;
       justify-content: flex-end;
-      font-size: 7pt;
+      font-family: var(--font-heading);
+      font-style: italic;
+      font-size: 9pt;
       font-weight: bold;
-      color: var(--black);
+      color: var(--accent);
     }
 
-    .sare-grid {
-      border-collapse: collapse;
+    .sare-bars {
+      display: flex;
+      flex-direction: column;
+      border: 1.5px solid var(--black);
+      width: 50mm;
     }
 
-    .sare-grid td {
-      width: 5mm;
+    .sare-bar {
       height: 5mm;
-      border: 0.5px solid var(--black);
+      border-bottom: 1px solid var(--black);
+    }
+
+    .sare-bar:last-child {
+      border-bottom: none;
     }
 
     .sare-numbers {
       display: flex;
+      width: 50mm;
     }
 
     .sare-numbers span {
       width: 5mm;
       text-align: center;
-      font-size: 5.5pt;
+      font-family: var(--font-heading);
+      font-style: italic;
+      font-size: 7pt;
       color: var(--accent);
       font-weight: bold;
       height: 5mm;
@@ -328,7 +341,7 @@
 
   <!-- ==================== DAILY — BACK ==================== -->
   <div class="page-label">DAILY — BACK</div>
-  <div class="page">
+  <div class="page daily-back">
 
     <!-- Inspirational Quote (changes per daily page — see quote vault in script) -->
     <div class="quote-area">
@@ -381,40 +394,24 @@
         </div>
       </div>
 
-      <!-- S.A.R.E. chart (bottom-right of Reflections box) -->
+      <!-- S.A.R.E. bar chart (bottom-right of Reflections box) -->
       <div class="sare-wrapper">
-        <div class="sare-layout">
-          <div class="sare-labels">
-            <span>S</span>
-            <span>A</span>
-            <span>R</span>
-            <span>E</span>
+        <div class="sare-labels">
+          <span>S</span>
+          <span>A</span>
+          <span>R</span>
+          <span>E</span>
+        </div>
+        <div>
+          <div class="sare-bars">
+            <div class="sare-bar"></div>
+            <div class="sare-bar"></div>
+            <div class="sare-bar"></div>
+            <div class="sare-bar"></div>
           </div>
-          <div>
-            <table class="sare-grid">
-              <tbody>
-                <tr>
-                  <td></td><td></td><td></td><td></td><td></td>
-                  <td></td><td></td><td></td><td></td><td></td>
-                </tr>
-                <tr>
-                  <td></td><td></td><td></td><td></td><td></td>
-                  <td></td><td></td><td></td><td></td><td></td>
-                </tr>
-                <tr>
-                  <td></td><td></td><td></td><td></td><td></td>
-                  <td></td><td></td><td></td><td></td><td></td>
-                </tr>
-                <tr>
-                  <td></td><td></td><td></td><td></td><td></td>
-                  <td></td><td></td><td></td><td></td><td></td>
-                </tr>
-              </tbody>
-            </table>
-            <div class="sare-numbers">
-              <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
-              <span>6</span><span>7</span><span>8</span><span>9</span><span>10</span>
-            </div>
+          <div class="sare-numbers">
+            <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+            <span>6</span><span>7</span><span>8</span><span>9</span><span>10</span>
           </div>
         </div>
       </div>
