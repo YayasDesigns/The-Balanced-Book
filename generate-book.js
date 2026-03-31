@@ -408,7 +408,7 @@ function buildAllPages() {
 
   // End matter: Congrats page (front) + blank (back) = 1 sheet
   pages.push(congratsPage());
-  pages.push(blankPage());
+  pages.push(linedPage(true));   // notes page (back/left-hand)
 
   // 3 lined sheets = 6 PDF pages
   for (let i = 0; i < 3; i++) {
