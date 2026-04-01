@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — The Balanced Book</title>
+  <meta name="description" content="Get in touch with The Balanced Book team. We'd love to hear from you.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Nunito+Sans:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+
+  <!-- ======== HEADER ======== -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="header-logo">
+        <div class="logo-icon">
+          <div class="beam"></div>
+          <div class="pan-l"></div>
+          <div class="pan-r"></div>
+          <div class="fulcrum"></div>
+        </div>
+        <div class="logo-text">
+          <span class="the">The</span>
+          <span class="balanced">Balanced</span>
+          <span class="book">Book</span>
+        </div>
+      </a>
+      <button class="nav-toggle" aria-label="Toggle navigation">&#9776;</button>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="product.html">Shop</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+  <div class="gradient-stripe"></div>
+
+  <!-- ======== PAGE HEADER ======== -->
+  <section class="page-header">
+    <h1>Contact Us</h1>
+    <p>We'd love to hear from you.</p>
+  </section>
+
+  <!-- ======== CONTACT FORM ======== -->
+  <section class="section">
+    <div class="container-narrow">
+      <div class="card" style="padding: var(--space-md);">
+        <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required placeholder="Your name">
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required placeholder="you@example.com">
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" required placeholder="What's on your mind?"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Send Message</button>
+        </form>
+      </div>
+
+      <div style="text-align: center; margin-top: var(--space-md); color: var(--dark-gray);">
+        <p style="font-size: 14px;">Or email us directly at <a href="mailto:hello@thebalancedbook.com">hello@thebalancedbook.com</a></p>
+        <div style="margin-top: var(--space-sm); display: flex; justify-content: center; gap: var(--space-sm);">
+          <a href="#" style="font-size: 14px;">Instagram</a>
+          <a href="#" style="font-size: 14px;">TikTok</a>
+          <a href="#" style="font-size: 14px;">Pinterest</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== FOOTER ======== -->
+  <div class="gradient-stripe"></div>
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-wordmark">
+        <span class="the">The</span>
+        <span class="balanced">Balanced</span>
+        <span class="book">Book</span>
+      </div>
+      <p class="footer-tagline">Plan &middot; Reflect &middot; Grow</p>
+      <ul class="footer-nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="product.html">Shop</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="footer-social">
+        <a href="#" aria-label="Instagram">&#9679;</a>
+        <a href="#" aria-label="TikTok">&#9679;</a>
+        <a href="#" aria-label="Pinterest">&#9679;</a>
+      </div>
+      <p class="footer-copy">&copy; 2026 The Balanced Book. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

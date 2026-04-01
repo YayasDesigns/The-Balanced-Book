@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop — The Balanced Book</title>
+  <meta name="description" content="Get your copy of The Balanced Book — a hybrid planner and journal combining productivity with mindfulness. A5, spiral-bound, undated.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Nunito+Sans:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+
+  <!-- ======== HEADER ======== -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="header-logo">
+        <div class="logo-icon">
+          <div class="beam"></div>
+          <div class="pan-l"></div>
+          <div class="pan-r"></div>
+          <div class="fulcrum"></div>
+        </div>
+        <div class="logo-text">
+          <span class="the">The</span>
+          <span class="balanced">Balanced</span>
+          <span class="book">Book</span>
+        </div>
+      </a>
+      <button class="nav-toggle" aria-label="Toggle navigation">&#9776;</button>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="product.html" class="active">Shop</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+  <div class="gradient-stripe"></div>
+
+  <!-- ======== PRODUCT HERO ======== -->
+  <section class="section">
+    <div class="container">
+      <div class="product-hero">
+        <div class="product-image">
+          <!-- CSS-drawn cover mockup -->
+          <div class="cover-mockup">
+            <div class="spine"></div>
+            <div class="imprint">
+              <span class="imp-the">The</span>
+              <span class="imp-balanced">Balanced</span>
+              <span class="imp-book">Book</span>
+            </div>
+            <div class="belly-band">
+              <div class="wm">
+                <span class="wm-the">The</span>
+                <span class="wm-balanced">Balanced</span>
+                <span class="wm-book">Book</span>
+              </div>
+              <span class="wm-tagline">Your daily companion for balanced living</span>
+            </div>
+          </div>
+        </div>
+        <div class="product-info">
+          <h1>The Balanced Book</h1>
+          <p style="font-style: italic; color: var(--mid-gray); margin-bottom: var(--space-sm);">2-Month Hybrid Planner &amp; Journal</p>
+          <!-- Pricing options -->
+          <div style="display: flex; gap: 12px; margin-bottom: var(--space-sm);">
+            <div id="opt-single" class="pricing-option selected" onclick="selectPricing('single')" style="flex: 1; border: 2px solid var(--purple); border-radius: var(--radius-sm); padding: 14px; cursor: pointer; text-align: center; transition: all 0.2s;">
+              <div style="font-weight: 700; font-size: 14px; margin-bottom: 2px;">Single Book</div>
+              <div style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 600; color: var(--terracotta);">$24.99</div>
+              <div style="font-size: 12px; color: var(--mid-gray);">2 months</div>
+            </div>
+            <div id="opt-bundle" class="pricing-option" onclick="selectPricing('bundle')" style="flex: 1; border: 2px solid var(--light-gray); border-radius: var(--radius-sm); padding: 14px; cursor: pointer; text-align: center; position: relative; transition: all 0.2s;">
+              <div style="position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: var(--sage-teal); color: white; font-size: 11px; font-weight: 700; padding: 2px 10px; border-radius: 10px; white-space: nowrap;">SAVE 15%</div>
+              <div style="font-weight: 700; font-size: 14px; margin-bottom: 2px;">Yearly Bundle</div>
+              <div style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 600; color: var(--terracotta);">$127.49</div>
+              <div style="font-size: 12px; color: var(--mid-gray);">6 books &middot; full year</div>
+              <div style="font-size: 11px; color: var(--sage-teal); font-weight: 600;">$21.25 per book</div>
+            </div>
+          </div>
+
+          <p>Plan your day with intention. Reflect with honesty. Grow into your best self. The Balanced Book combines daily productivity tools with mindfulness features — all in one beautiful, spiral-bound book.</p>
+          <p style="font-size: 14px; color: var(--dark-gray);">Why 2 months? Because every single day gets a full two-page spread — with space for gratitude, affirmations, mood tracking, reflections, and wellness check-ins alongside your tasks. Most planners cram a week onto one page; we give each day the attention it deserves. The result is a book that's compact enough to carry everywhere, but deep enough to actually make a difference in your routine.</p>
+          <a href="#" id="buy-btn" class="btn btn-primary" style="margin-top: var(--space-sm);">Buy Now — $24.99</a>
+          <p style="font-size: 12px; color: var(--mid-gray); margin-top: var(--space-xs);">Ships via our print partner. Free returns.</p>
+
+          <script>
+            function selectPricing(option) {
+              var single = document.getElementById('opt-single');
+              var bundle = document.getElementById('opt-bundle');
+              var btn = document.getElementById('buy-btn');
+              if (option === 'single') {
+                single.style.borderColor = 'var(--purple)';
+                bundle.style.borderColor = 'var(--light-gray)';
+                btn.textContent = 'Buy Now \u2014 $24.99';
+              } else {
+                bundle.style.borderColor = 'var(--purple)';
+                single.style.borderColor = 'var(--light-gray)';
+                btn.textContent = 'Buy Bundle \u2014 $127.49';
+              }
+            }
+          </script>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="gradient-stripe"></div>
+
+  <!-- ======== WHAT'S INSIDE ======== -->
+  <section class="section" style="background: var(--white);">
+    <div class="container">
+      <h2 class="text-center" style="margin-bottom: var(--space-md);">What's Inside</h2>
+      <div class="card-grid card-grid-4">
+        <div class="card feature-card">
+          <div class="icon">&#128197;</div>
+          <h3>Monthly Overview</h3>
+          <p>A gentle reminder that every day is a gift. See the whole month at a glance with a calendar grid.</p>
+        </div>
+        <div class="card feature-card">
+          <div class="icon" style="background: var(--sage-teal); color: white;">&#127919;</div>
+          <h3>Weekly Spreads</h3>
+          <p>Goals &amp; priorities, 7-habit tracker, acts of kindness, biggest wins, and self-reflections.</p>
+        </div>
+        <div class="card feature-card">
+          <div class="icon" style="background: var(--parchment);">&#9997;&#65039;</div>
+          <h3>Daily Pages</h3>
+          <p>Gratitude, affirmations, mood tracker, top tasks, reflections, and tomorrow's excitements.</p>
+        </div>
+        <div class="card feature-card">
+          <div class="icon" style="background: var(--terracotta); color: white;">&#128202;</div>
+          <h3>S.A.R.E. Tracker</h3>
+          <p>Rate Sleep, Appetite, Recreation &amp; Energy on a 1&ndash;10 bar chart every day.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== FEATURE LIST ======== -->
+  <section class="section">
+    <div class="container-narrow">
+      <h2 class="text-center" style="margin-bottom: var(--space-md);">Why You'll Love It</h2>
+      <div class="card" style="padding: var(--space-md);">
+        <ul style="list-style: none; font-size: 15px; line-height: 2.2;">
+          <li>&#10003; Combines productivity <em>and</em> wellness in one book</li>
+          <li>&#10003; Undated — start any time, no wasted pages</li>
+          <li>&#10003; Spiral-bound — lays completely flat when open</li>
+          <li>&#10003; 120gsm paper — smooth writing, minimal bleed-through</li>
+          <li>&#10003; Three layers of planning: monthly, weekly, and daily</li>
+          <li>&#10003; Unique S.A.R.E. wellness tracker</li>
+          <li>&#10003; Space for gratitude, affirmations, and reflections daily</li>
+          <li>&#10003; Beautiful two-tone design with purple accent</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== SPECS ======== -->
+  <section class="section" style="background: var(--white);">
+    <div class="container-narrow">
+      <h2 class="text-center" style="margin-bottom: var(--space-md);">Specifications</h2>
+      <div class="card">
+        <table class="specs-table">
+          <tr><td>Size</td><td>A5 (5.8 &times; 8.3 in / 148 &times; 210 mm)</td></tr>
+          <tr><td>Pages</td><td>~140 pages (2-month planner)</td></tr>
+          <tr><td>Binding</td><td>Spiral / wire-o (lays flat)</td></tr>
+          <tr><td>Paper</td><td>120gsm dot-grid, pen-friendly</td></tr>
+          <tr><td>Cover</td><td>Matte black, soft-touch laminate</td></tr>
+          <tr><td>Design</td><td>Two-tone: black structure + purple accent</td></tr>
+          <tr><td>Dating</td><td>Undated — start any time</td></tr>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== BOTTOM CTA ======== -->
+  <section class="cta-banner">
+    <div class="container-narrow">
+      <h2>Ready to Find Your Balance?</h2>
+      <p>Your journey to intentional living starts here. Grab a single book or save 15% with the yearly bundle.</p>
+      <a href="#" class="btn btn-white" style="margin-right: 8px;">Buy Now — $24.99</a>
+      <a href="#" class="btn btn-secondary" style="border-color: white; color: white;">Yearly Bundle — $127.49</a>
+    </div>
+  </section>
+
+  <!-- ======== FOOTER ======== -->
+  <div class="gradient-stripe"></div>
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-wordmark">
+        <span class="the">The</span>
+        <span class="balanced">Balanced</span>
+        <span class="book">Book</span>
+      </div>
+      <p class="footer-tagline">Plan &middot; Reflect &middot; Grow</p>
+      <ul class="footer-nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="product.html">Shop</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="footer-social">
+        <a href="#" aria-label="Instagram">&#9679;</a>
+        <a href="#" aria-label="TikTok">&#9679;</a>
+        <a href="#" aria-label="Pinterest">&#9679;</a>
+      </div>
+      <p class="footer-copy">&copy; 2026 The Balanced Book. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+/* ============================================
+   THE BALANCED BOOK — Design Tokens
+   Single source of truth for brand colors,
+   fonts, spacing, and border radius.
+   ============================================ */
+
+:root {
+  /* Brand colors */
+  --purple: #7B2D8E;
+  --purple-dark: #5a1f6a;
+  --terracotta: #C0522E;
+  --dusty-petal: #E8BFCC;
+  --parchment: #F0DEC8;
+  --sage-teal: #7AA8A0;
+
+  /* Neutrals */
+  --black: #1a1a1a;
+  --dark-gray: #444;
+  --mid-gray: #888;
+  --light-gray: #e8e8e8;
+  --white: #fefefe;
+
+  /* Fonts (loaded via Google Fonts in HTML <head>) */
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-heading: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Nunito Sans', 'Helvetica Neue', Arial, sans-serif;
+
+  /* Spacing scale */
+  --space-xs: 8px;
+  --space-sm: 16px;
+  --space-md: 32px;
+  --space-lg: 64px;
+  --space-xl: 96px;
+
+  /* Border radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 24px;
+
+  /* Layout */
+  --max-width: 1100px;
+  --max-width-narrow: 720px;
+
+  /* Gradient stripe (decorative accent) */
+  --gradient-stripe: linear-gradient(90deg, var(--purple), var(--terracotta), var(--sage-teal));
+}
