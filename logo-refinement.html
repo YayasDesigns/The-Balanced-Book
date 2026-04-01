@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Balanced Book — Logo Refinement</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Nunito+Sans:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --purple: #7B2D8E;
+      --terracotta: #C0522E;
+      --dusty-petal: #E8BFCC;
+      --parchment: #F0DEC8;
+      --sage-teal: #7AA8A0;
+      --black: #1a1a1a;
+      --dark-gray: #444;
+      --mid-gray: #888;
+      --light-gray: #e8e8e8;
+      --white: #fefefe;
+
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-heading: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Nunito Sans', 'Helvetica Neue', Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--black);
+      background: #f5f3f0;
+      line-height: 1.6;
+    }
+
+    .guide {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 40px 30px;
+    }
+
+    .page-title {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .page-title h1 {
+      font-family: var(--font-heading);
+      font-size: 32px;
+      font-weight: 600;
+      color: var(--purple);
+    }
+
+    .page-title p {
+      color: var(--mid-gray);
+      font-size: 14px;
+    }
+
+    section {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 40px;
+      margin-bottom: 30px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+
+    h2 {
+      font-family: var(--font-heading);
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--purple);
+      margin-bottom: 6px;
+    }
+
+    .section-intro {
+      color: var(--mid-gray);
+      font-size: 14px;
+      margin-bottom: 24px;
+      border-bottom: 1px solid var(--light-gray);
+      padding-bottom: 14px;
+    }
+
+    h3 {
+      font-family: var(--font-heading);
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--dark-gray);
+      margin: 28px 0 14px;
+    }
+
+    /* ---- Wordmark base ---- */
+    .wm {
+      text-align: center;
+      line-height: 1.05;
+      user-select: none;
+    }
+
+    .wm .the {
+      font-family: var(--font-body);
+      font-weight: 300;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      display: block;
+    }
+
+    .wm .balanced {
+      font-family: var(--font-display);
+      font-weight: 400;
+      display: block;
+      letter-spacing: 1px;
+    }
+
+    .wm .book {
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-style: italic;
+      display: block;
+      letter-spacing: 1px;
+    }
+
+    /* ---- Logo grid ---- */
+    .logo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .logo-grid-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 20px;
+    }
+
+    .logo-cell {
+      border: 1px solid var(--light-gray);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .logo-display {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 24px;
+      min-height: 180px;
+    }
+
+    .logo-label {
+      padding: 10px 16px;
+      font-size: 12px;
+      color: var(--dark-gray);
+      background: #fafafa;
+      border-top: 1px solid var(--light-gray);
+      text-align: center;
+    }
+
+    .logo-label strong { display: block; margin-bottom: 2px; }
+    .logo-label span { color: var(--mid-gray); font-size: 11px; }
+
+    /* Background variants */
+    .bg-white { background: white; }
+    .bg-parchment { background: var(--parchment); }
+    .bg-purple { background: var(--purple); }
+    .bg-dark { background: var(--black); }
+    .bg-dusty { background: var(--dusty-petal); }
+    .bg-sage { background: #eef4f2; }
+
+    /* ---- Sizing variants ---- */
+    .wm-xl .the { font-size: 16px; margin-bottom: 6px; }
+    .wm-xl .balanced { font-size: 48px; }
+    .wm-xl .book { font-size: 48px; }
+
+    .wm-lg .the { font-size: 14px; margin-bottom: 5px; }
+    .wm-lg .balanced { font-size: 38px; }
+    .wm-lg .book { font-size: 38px; }
+
+    .wm-md .the { font-size: 11px; margin-bottom: 3px; letter-spacing: 3px; }
+    .wm-md .balanced { font-size: 26px; }
+    .wm-md .book { font-size: 26px; }
+
+    .wm-sm .the { font-size: 8px; margin-bottom: 2px; letter-spacing: 2px; }
+    .wm-sm .balanced { font-size: 18px; }
+    .wm-sm .book { font-size: 18px; }
+
+    .wm-xs .the { font-size: 6px; margin-bottom: 1px; letter-spacing: 1.5px; }
+    .wm-xs .balanced { font-size: 13px; }
+    .wm-xs .book { font-size: 13px; }
+
+    /* ---- With tagline ---- */
+    .tagline {
+      font-family: var(--font-body);
+      font-weight: 300;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-top: 10px;
+      display: block;
+    }
+
+    /* ---- Inline / horizontal variant ---- */
+    .wm-inline {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      justify-content: center;
+    }
+
+    .wm-inline .the {
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .wm-inline .balanced {
+      font-family: var(--font-display);
+      font-size: 28px;
+    }
+
+    .wm-inline .book {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-style: italic;
+    }
+
+    /* ---- With icon mark ---- */
+    .wm-with-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .icon-balance {
+      position: relative;
+      width: 50px;
+      height: 44px;
+      flex-shrink: 0;
+    }
+
+    .icon-balance .beam {
+      position: absolute;
+      top: 12px;
+      left: 3px;
+      width: 44px;
+      height: 2.5px;
+      border-radius: 2px;
+    }
+
+    .icon-balance .fulcrum {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: 8px solid transparent;
+      border-right: 8px solid transparent;
+    }
+
+    .icon-balance .pan-l,
+    .icon-balance .pan-r {
+      position: absolute;
+      top: 14px;
+      width: 14px;
+      height: 9px;
+      border-radius: 0 0 7px 7px;
+      border: 2px solid;
+      border-top: none;
+    }
+
+    .icon-balance .pan-l { left: 1px; }
+    .icon-balance .pan-r { right: 1px; }
+
+    /* ---- Monogram ---- */
+    .monogram {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-style: italic;
+      line-height: 1;
+    }
+
+    /* ---- Clear space diagram ---- */
+    .clearspace-demo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+    }
+
+    .clearspace-box {
+      position: relative;
+      border: 2px dashed var(--sage-teal);
+      padding: 40px 50px;
+      display: inline-block;
+    }
+
+    .clearspace-box::before {
+      content: '← B →';
+      position: absolute;
+      bottom: -24px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 11px;
+      color: var(--sage-teal);
+      font-family: var(--font-body);
+      white-space: nowrap;
+    }
+
+    .clearspace-box::after {
+      content: '↑ B ↓';
+      position: absolute;
+      right: -28px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 11px;
+      color: var(--sage-teal);
+      font-family: var(--font-body);
+      white-space: pre;
+    }
+
+    /* ---- Minimum size ---- */
+    .min-size-row {
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 40px;
+      padding: 30px 0;
+    }
+
+    .min-size-item {
+      text-align: center;
+    }
+
+    .min-size-item .label {
+      font-size: 11px;
+      color: var(--mid-gray);
+      margin-top: 8px;
+    }
+
+    /* ---- Cover mockup ---- */
+    .cover-mockup {
+      width: 280px;
+      height: 396px; /* A5 ratio */
+      margin: 0 auto;
+      border-radius: 4px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      box-shadow: 4px 6px 20px rgba(0,0,0,0.2);
+    }
+
+    .cover-mockup .spine-edge {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 6px;
+      background: rgba(0,0,0,0.15);
+      border-radius: 4px 0 0 4px;
+    }
+
+    .cover-mockups-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      margin-top: 20px;
+    }
+
+    .mockup-label {
+      text-align: center;
+      font-size: 13px;
+      color: var(--dark-gray);
+      margin-top: 16px;
+    }
+
+    @media (max-width: 700px) {
+      .logo-grid, .cover-mockups-row { grid-template-columns: 1fr; }
+      .logo-grid-3 { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="guide">
+
+    <div class="page-title">
+      <h1>Logo Refinement</h1>
+      <p>The Balanced Book — Stacked Serif Wordmark</p>
+    </div>
+
+    <!-- ======== PRIMARY WORDMARK ======== -->
+    <section>
+      <h2>Primary Wordmark</h2>
+      <p class="section-intro">The stacked serif wordmark is the primary brand mark. "The" is set small in Nunito Sans light, while "Balanced" and "Book" use Playfair Display — with "Book" in italic for a graceful contrast.</p>
+
+      <div class="logo-grid">
+        <div class="logo-cell">
+          <div class="logo-display bg-white">
+            <div class="wm wm-xl" style="color: var(--purple);">
+              <span class="the" style="color: var(--dark-gray);">The</span>
+              <span class="balanced">Balanced</span>
+              <span class="book">Book</span>
+            </div>
+          </div>
+          <div class="logo-label">
+            <strong>Primary — on white</strong>
+            <span>Default usage for most applications</span>
+          </div>
+        </div>
+
+        <div class="logo-cell">
+          <div class="logo-display bg-parchment">
+            <div class="wm wm-xl" style="color: var(--purple);">
+              <span class="the" style="color: var(--dark-gray);">The</span>
+              <span class="balanced">Balanced</span>
+              <span class="book">Book</span>
+            </div>
+          </div>
+          <div class="logo-label">
+            <strong>Primary — on parchment</strong>
+            <span>Preferred for branded materials</span>
+          </div>
+        </div>
+
+        <div class="logo-cell">
+          <div class="logo-display bg-purple">
+            <div class="wm wm-xl" style="color: white;">
+              <span class="the" style="color: var(--dusty-petal);">The</span>
+              <span class="balanced">Balanced</span>
+              <span class="book">Book</span>
+            </div>
+          </div>
+          <div class="logo-label">
+            <strong>Reversed — on purple</strong>
+            <span>Cover, social media, packaging</span>
+          </div>
+        </div>
+
+        <div class="logo-cell">
+          <div class="logo-display bg-dark">
+            <div class="wm wm-xl" style="color: var(--parchment);">
+              <span class="the" style="color: var(--sage-teal);">The</span>
+              <span class="balanced">Balanced</span>
+              <span class="book">Book</span>
+            </div>
+          </div>
+          <div class="logo-label">
+            <strong>Reversed — on dark</strong>
+            <span>Dark mode, photography overlays</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======== WITH TAGLINE ======== -->
+    <section>
+      <h2>With Tagline</h2>
+      <p class="section-intro">When space allows, the tagline appears below the wordmark separated by breathing room.</p>
+
+      <div class="logo-grid">
+        <div class="logo-cell">
+          <div class="logo-display bg-parchment">
+            <div class="wm wm-lg" style="color: var(--purple);">
+              <span class="the" style="color: var(--dark-gray);">The</span>
+              <span class="balanced">Balanced</span>
+              <span class="book">Book</span>
+              <span class="tagline" style="font-size: 10px; color: var(--terracotta);">Plan · Reflect · Grow</span>
+            </div>
+          </div>
+          <div class="logo-label">
+            <strong>Tagline option A</strong>
+            <span>Action-oriented, three pillars</span>
+          </div>
+        </div>
+
+        <div class="logo-cell">
+          <div class="logo-display bg-parchment">
+            <div class="wm wm-lg" style="color: var(--purple);">
+              <span class="the" style="color: var(--dark-gray);">The</span>
+              <span class="balanced">Balanced</span>
+              <span class="book">Book</span>
+              <span class="tagline" style="font-size: 10px; color: var(--sage-teal);">Your daily companion for balanced living</span>
+            </div>
+          </div>
+          <div class="logo-label">
+            <strong>Tagline option B</strong>
+            <span>Warm, descriptive, inviting</span>
+          </div>
+        </div>
+
+        <div class="logo-cell">
+          <div class="logo-display bg-purple">
+            <div class="wm wm-lg" style="color: white;">
+              <span class="the" style="color: var(--dusty-petal);">The</span>
+              <span class="balanced">Balanced</span>
+              <span class="book">Book</span>
+              <span class="tagline" style="font-size: 10px; color: var(--parchment);">Plan · Reflect · Grow</span>
+            </div>
+          </div>
+          <div class="logo-label">
+            <strong>Tagline A — reversed</strong>
+          </div>
+        </div>
+
+        <div class="logo-cell">
+          <div class="logo-display bg-purple">
+            <div class="wm wm-lg" style="color: white;">
+              <span class="the" style="color: var(--dusty-petal);">The</span>
+              <span class="balanced">Balanced</span>
+              <span class="book">Book</span>
+              <span class="tagline" style="font-size: 10px; color: var(--parchment);">Your daily companion for balanced living</span>
+            </div>
+          </div>
+          <div class="logo-label">
+            <strong>Tagline B — reversed</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======== WITH ICON ======== -->
+    <section>
+      <h2>Icon + Wordmark</h2>
+      <p class="section-intro">A balance scale icon can pair with the wordmark for added visual identity. The icon uses brand colors to represent equilibrium.</p>
+
+      <div class="logo-grid">
+        <div class="logo-cell">
+          <div class="logo-display bg-parchment">
+            <div class="wm-with-icon">
+              <div class="icon-balance">
+                <div class="beam" style="background: var(--purple);"></div>
+                <div class="pan-l" style="border-color: var(--terracotta);"></div>
+                <div class="pan-r" style="border-color: var(--sage-teal);"></div>
+                <div class="fulcrum" style="border-bottom-color: var(--purple);"></div>
+              </div>
+              <div class="wm wm-md" style="color: var(--purple); text-align: left;">
+                <span class="the" style="color: var(--dark-gray);">The</span>
+                <span class="balanced">Balanced</span>
+                <span class="book">Book</span>
+              </div>
+            </div>
+          </div>
+          <div class="logo-label">
+            <strong>Icon + wordmark — horizontal</strong>
+            <span>Website header, business cards</span>
+          </div>
+        </div>
+
+        <div class="logo-cell">
+          <div class="logo-display bg-purple">
+            <div class="wm-with-icon">
+              <div class="icon-balance">
+                <div class="beam" style="background: var(--parchment);"></div>
+                <div class="pan-l" style="border-color: var(--dusty-petal);"></div>
+                <div class="pan-r" style="border-color: var(--sage-teal);"></div>
+                <div class="fulcrum" style="border-bottom-color: var(--parchment);"></div>
+              </div>
+              <div class="wm wm-md" style="color: white; text-align: left;">
+                <span class="the" style="color: var(--dusty-petal);">The</span>
+                <span class="balanced">Balanced</span>
+                <span class="book">Book</span>
+              </div>
+            </div>
+          </div>
+          <div class="logo-label">
+            <strong>Icon + wordmark — reversed</strong>
+          </div>
+        </div>
+
+        <!-- Stacked with icon on top -->
+        <div class="logo-cell">
+          <div class="logo-display bg-white">
+            <div style="text-align: center;">
+              <div class="icon-balance" style="margin: 0 auto 14px;">
+                <div class="beam" style="background: var(--purple);"></div>
+                <div class="pan-l" style="border-color: var(--terracotta);"></div>
+                <div class="pan-r" style="border-color: var(--sage-teal);"></div>
+                <div class="fulcrum" style="border-bottom-color: var(--purple);"></div>
+              </div>
+              <div class="wm wm-md" style="color: var(--purple);">
+                <span class="the" style="color: var(--dark-gray);">The</span>
+                <span class="balanced">Balanced</span>
+                <span class="book">Book</span>
+              </div>
+            </div>
+          </div>
+          <div class="logo-label">
+            <strong>Icon stacked above</strong>
+            <span>Centered layouts, packaging</span>
+          </div>
+        </div>
+
+        <!-- Monogram -->
+        <div class="logo-cell">
+          <div class="logo-display bg-parchment" style="gap: 20px;">
+            <div class="monogram" style="background: var(--purple); color: white;">
+              Bb
+            </div>
+            <div class="monogram" style="background: white; color: var(--purple); border: 2px solid var(--purple);">
+              Bb
+            </div>
+            <div class="monogram" style="background: var(--sage-teal); color: white;">
+              Bb
+            </div>
+          </div>
+          <div class="logo-label">
+            <strong>Monogram — "Bb"</strong>
+            <span>Favicon, social avatar, stamp, small spaces</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======== INLINE VARIANT ======== -->
+    <section>
+      <h2>Inline Variant</h2>
+      <p class="section-intro">For horizontal spaces like website headers, email signatures, and navigation bars.</p>
+
+      <div class="logo-grid">
+        <div class="logo-cell">
+          <div class="logo-display bg-white" style="min-height: 100px;">
+            <div class="wm-inline" style="color: var(--purple);">
+              <span class="the" style="color: var(--mid-gray);">The</span>
+              <span class="balanced">Balanced</span>
+              <span class="book" style="font-style: italic;">Book</span>
+            </div>
+          </div>
+          <div class="logo-label"><strong>Inline — light</strong></div>
+        </div>
+
+        <div class="logo-cell">
+          <div class="logo-display bg-dark" style="min-height: 100px;">
+            <div class="wm-inline" style="color: var(--parchment);">
+              <span class="the" style="color: var(--sage-teal);">The</span>
+              <span class="balanced">Balanced</span>
+              <span class="book" style="font-style: italic;">Book</span>
+            </div>
+          </div>
+          <div class="logo-label"><strong>Inline — dark</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======== SIZE SCALE ======== -->
+    <section>
+      <h2>Size Scale</h2>
+      <p class="section-intro">The wordmark at different sizes. Below 18px for "Balanced", switch to the monogram.</p>
+
+      <div class="min-size-row">
+        <div class="min-size-item">
+          <div class="wm wm-xl" style="color: var(--purple);">
+            <span class="the" style="color: var(--dark-gray);">The</span>
+            <span class="balanced">Balanced</span>
+            <span class="book">Book</span>
+          </div>
+          <div class="label">XL — Cover, posters</div>
+        </div>
+
+        <div class="min-size-item">
+          <div class="wm wm-md" style="color: var(--purple);">
+            <span class="the" style="color: var(--dark-gray);">The</span>
+            <span class="balanced">Balanced</span>
+            <span class="book">Book</span>
+          </div>
+          <div class="label">MD — Web, print headers</div>
+        </div>
+
+        <div class="min-size-item">
+          <div class="wm wm-sm" style="color: var(--purple);">
+            <span class="the" style="color: var(--dark-gray);">The</span>
+            <span class="balanced">Balanced</span>
+            <span class="book">Book</span>
+          </div>
+          <div class="label">SM — Minimum wordmark</div>
+        </div>
+
+        <div class="min-size-item">
+          <div class="monogram" style="background: var(--purple); color: white; width: 40px; height: 40px; font-size: 20px;">
+            Bb
+          </div>
+          <div class="label">Monogram — Tiny spaces</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======== CLEAR SPACE ======== -->
+    <section>
+      <h2>Clear Space & Rules</h2>
+      <p class="section-intro">Minimum clear space around the wordmark equals the cap height of "B" in "Balanced" (marked as "B" below). No other elements should enter this zone.</p>
+
+      <div class="clearspace-demo">
+        <div class="clearspace-box">
+          <div class="wm wm-md" style="color: var(--purple);">
+            <span class="the" style="color: var(--dark-gray);">The</span>
+            <span class="balanced">Balanced</span>
+            <span class="book">Book</span>
+          </div>
+        </div>
+      </div>
+
+      <h3>Rules</h3>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 12px;">
+        <div style="background: #f0faf5; border: 1px solid #c8e6d6; border-radius: 8px; padding: 16px;">
+          <strong style="color: #2a7a4b; font-size: 13px;">Do</strong>
+          <ul style="list-style: none; font-size: 13px; line-height: 1.8; margin-top: 6px;">
+            <li>&#10003; Maintain clear space on all sides</li>
+            <li>&#10003; Use approved color combinations only</li>
+            <li>&#10003; Use monogram when space is under 60px wide</li>
+            <li>&#10003; Center-align for stacked, left-align for inline</li>
+          </ul>
+        </div>
+        <div style="background: #fdf0f0; border: 1px solid #e6c8c8; border-radius: 8px; padding: 16px;">
+          <strong style="color: #a33; font-size: 13px;">Don't</strong>
+          <ul style="list-style: none; font-size: 13px; line-height: 1.8; margin-top: 6px;">
+            <li>&#10007; Stretch or compress the wordmark</li>
+            <li>&#10007; Change the font or letter spacing</li>
+            <li>&#10007; Place on busy or low-contrast backgrounds</li>
+            <li>&#10007; Add drop shadows, outlines, or effects</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======== COVER PREVIEW ======== -->
+    <section>
+      <h2>Cover Concept Preview</h2>
+      <p class="section-intro">Quick mockups showing how the wordmark could sit on a planner cover at A5 size.</p>
+
+      <div class="cover-mockups-row">
+        <div>
+          <div class="cover-mockup" style="background: linear-gradient(170deg, var(--purple) 0%, #5a1f6a 100%);">
+            <div class="spine-edge"></div>
+            <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-image: radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px); background-size: 12px 12px;"></div>
+            <div class="wm wm-lg" style="color: white; position: relative; z-index: 1;">
+              <span class="the" style="color: var(--dusty-petal);">The</span>
+              <span class="balanced">Balanced</span>
+              <span class="book">Book</span>
+              <span class="tagline" style="font-size: 9px; color: var(--parchment); margin-top: 14px;">Plan · Reflect · Grow</span>
+            </div>
+          </div>
+          <div class="mockup-label">Concept A — Deep purple with dot texture</div>
+        </div>
+
+        <div>
+          <div class="cover-mockup" style="background: var(--parchment);">
+            <div class="spine-edge"></div>
+            <!-- Decorative accent stripe -->
+            <div style="position: absolute; top: 50px; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--purple), var(--terracotta), var(--sage-teal));"></div>
+            <div style="position: absolute; bottom: 50px; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--sage-teal), var(--terracotta), var(--purple));"></div>
+            <div class="wm wm-lg" style="color: var(--purple); position: relative; z-index: 1;">
+              <span class="the" style="color: var(--dark-gray);">The</span>
+              <span class="balanced">Balanced</span>
+              <span class="book">Book</span>
+              <span class="tagline" style="font-size: 9px; color: var(--terracotta); margin-top: 14px;">Plan · Reflect · Grow</span>
+            </div>
+          </div>
+          <div class="mockup-label">Concept B — Parchment with gradient stripes</div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</body>
+</html>

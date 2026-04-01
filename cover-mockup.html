@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Balanced Book — Cover Mockup</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --purple: #7B2D8E;
+      --terracotta: #C0522E;
+      --dusty-petal: #E8BFCC;
+      --parchment: #F0DEC8;
+      --sage-teal: #7AA8A0;
+      --black: #1a1a1a;
+      --matte-black: #1c1c1c;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body: 'Nunito Sans', 'Helvetica Neue', Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-body);
+      background: #2a2a2a;
+      color: #ccc;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: 24px;
+      color: #aaa;
+      margin-bottom: 8px;
+      letter-spacing: 1px;
+    }
+
+    .subtitle {
+      font-size: 13px;
+      color: #666;
+      margin-bottom: 40px;
+    }
+
+    /* ---- Cover container ---- */
+    .covers-row {
+      display: flex;
+      gap: 60px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 50px;
+    }
+
+    .cover-wrapper {
+      text-align: center;
+    }
+
+    .cover-label {
+      font-size: 13px;
+      color: #888;
+      margin-top: 20px;
+      letter-spacing: 1px;
+    }
+
+    /* ---- A5 Cover ---- */
+    .cover {
+      width: 296px;   /* 2x scale of 148mm for screen */
+      height: 420px;  /* 2x scale of 210mm */
+      position: relative;
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    /* Matte black cover */
+    .cover-matte {
+      background: var(--matte-black);
+      /* Subtle matte texture */
+      background-image:
+        repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 1px,
+          rgba(255,255,255,0.008) 1px,
+          rgba(255,255,255,0.008) 2px
+        );
+      box-shadow:
+        4px 6px 24px rgba(0,0,0,0.5),
+        inset 0 0 60px rgba(0,0,0,0.3);
+    }
+
+    /* Spine highlight */
+    .cover .spine {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: linear-gradient(
+        180deg,
+        rgba(255,255,255,0.06) 0%,
+        rgba(255,255,255,0.02) 50%,
+        rgba(255,255,255,0.06) 100%
+      );
+    }
+
+    /* Brand imprint in lower-right */
+    .imprint {
+      position: absolute;
+      bottom: 28px;
+      right: 24px;
+      text-align: right;
+      line-height: 1.05;
+    }
+
+    /* Debossed / foil effect variants */
+    .imprint-deboss {
+      opacity: 0.18;
+      color: #888;
+    }
+
+    .imprint-silver {
+      color: #999;
+      opacity: 0.5;
+      text-shadow: 0 0 1px rgba(200,200,200,0.2);
+    }
+
+    .imprint-purple {
+      color: var(--purple);
+      opacity: 0.55;
+    }
+
+    .imprint-gold {
+      color: #c9a84c;
+      opacity: 0.6;
+      text-shadow: 0 0 2px rgba(201,168,76,0.15);
+    }
+
+    .imprint .the {
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: 7px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .imprint .balanced {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 400;
+      display: block;
+      letter-spacing: 0.5px;
+    }
+
+    .imprint .book {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 400;
+      font-style: italic;
+      display: block;
+      letter-spacing: 0.5px;
+    }
+
+    /* ---- Belly band / cover slip ---- */
+    .belly-band {
+      position: absolute;
+      left: -2px;
+      right: -2px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--purple);
+      padding: 24px 20px;
+      text-align: center;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+    }
+
+    .belly-band .wm {
+      text-align: center;
+      line-height: 1.05;
+      color: white;
+    }
+
+    .belly-band .wm .the {
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 3px;
+      color: var(--dusty-petal);
+    }
+
+    .belly-band .wm .balanced {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 400;
+      display: block;
+    }
+
+    .belly-band .wm .book {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 400;
+      font-style: italic;
+      display: block;
+    }
+
+    .belly-band .tagline {
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: 8px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--parchment);
+      margin-top: 10px;
+      display: block;
+    }
+
+    /* ---- Notes section ---- */
+    .notes {
+      max-width: 700px;
+      background: rgba(255,255,255,0.04);
+      border-radius: 10px;
+      padding: 30px;
+      margin-top: 20px;
+    }
+
+    .notes h2 {
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 16px;
+      color: #aaa;
+      margin-bottom: 14px;
+    }
+
+    .notes table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    .notes td {
+      padding: 8px 12px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      vertical-align: top;
+    }
+
+    .notes td:first-child {
+      color: #888;
+      width: 160px;
+      font-weight: 600;
+    }
+
+    .swatch-inline {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 3px;
+      vertical-align: middle;
+      margin-right: 6px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Cover Mockups</h1>
+  <p class="subtitle">Matte black cover with brand imprint — lower right corner</p>
+
+  <!-- ======== ROW 1: Imprint finishes ======== -->
+  <div class="covers-row">
+
+    <!-- Debossed (blind emboss) -->
+    <div class="cover-wrapper">
+      <div class="cover cover-matte">
+        <div class="spine"></div>
+        <div class="imprint imprint-deboss">
+          <span class="the">The</span>
+          <span class="balanced">Balanced</span>
+          <span class="book">Book</span>
+        </div>
+      </div>
+      <div class="cover-label">Blind deboss</div>
+    </div>
+
+    <!-- Silver foil -->
+    <div class="cover-wrapper">
+      <div class="cover cover-matte">
+        <div class="spine"></div>
+        <div class="imprint imprint-silver">
+          <span class="the">The</span>
+          <span class="balanced">Balanced</span>
+          <span class="book">Book</span>
+        </div>
+      </div>
+      <div class="cover-label">Silver foil stamp</div>
+    </div>
+
+    <!-- Purple foil -->
+    <div class="cover-wrapper">
+      <div class="cover cover-matte">
+        <div class="spine"></div>
+        <div class="imprint imprint-purple">
+          <span class="the">The</span>
+          <span class="balanced">Balanced</span>
+          <span class="book">Book</span>
+        </div>
+      </div>
+      <div class="cover-label">Purple foil stamp</div>
+    </div>
+
+    <!-- Gold foil -->
+    <div class="cover-wrapper">
+      <div class="cover cover-matte">
+        <div class="spine"></div>
+        <div class="imprint imprint-gold">
+          <span class="the">The</span>
+          <span class="balanced">Balanced</span>
+          <span class="book">Book</span>
+        </div>
+      </div>
+      <div class="cover-label">Gold foil stamp</div>
+    </div>
+  </div>
+
+  <!-- ======== ROW 2: With belly band ======== -->
+  <h1 style="margin-top: 20px;">With Cover Slip</h1>
+  <p class="subtitle">Purple belly band wraps around the matte black cover for retail presentation</p>
+
+  <div class="covers-row">
+
+    <!-- Deboss + belly band -->
+    <div class="cover-wrapper">
+      <div class="cover cover-matte">
+        <div class="spine"></div>
+        <div class="imprint imprint-deboss">
+          <span class="the">The</span>
+          <span class="balanced">Balanced</span>
+          <span class="book">Book</span>
+        </div>
+        <div class="belly-band">
+          <div class="wm">
+            <span class="the">The</span>
+            <span class="balanced">Balanced</span>
+            <span class="book">Book</span>
+          </div>
+          <span class="tagline">Your daily companion for balanced living</span>
+        </div>
+      </div>
+      <div class="cover-label">Blind deboss + cover slip</div>
+    </div>
+
+    <!-- Silver + belly band -->
+    <div class="cover-wrapper">
+      <div class="cover cover-matte">
+        <div class="spine"></div>
+        <div class="imprint imprint-silver">
+          <span class="the">The</span>
+          <span class="balanced">Balanced</span>
+          <span class="book">Book</span>
+        </div>
+        <div class="belly-band">
+          <div class="wm">
+            <span class="the">The</span>
+            <span class="balanced">Balanced</span>
+            <span class="book">Book</span>
+          </div>
+          <span class="tagline">Your daily companion for balanced living</span>
+        </div>
+      </div>
+      <div class="cover-label">Silver foil + cover slip</div>
+    </div>
+
+    <!-- Purple + belly band -->
+    <div class="cover-wrapper">
+      <div class="cover cover-matte">
+        <div class="spine"></div>
+        <div class="imprint imprint-purple">
+          <span class="the">The</span>
+          <span class="balanced">Balanced</span>
+          <span class="book">Book</span>
+        </div>
+        <div class="belly-band">
+          <div class="wm">
+            <span class="the">The</span>
+            <span class="balanced">Balanced</span>
+            <span class="book">Book</span>
+          </div>
+          <span class="tagline">Your daily companion for balanced living</span>
+        </div>
+      </div>
+      <div class="cover-label">Purple foil + cover slip</div>
+    </div>
+
+  </div>
+
+  <!-- ======== SPEC NOTES ======== -->
+  <div class="notes">
+    <h2>Production Notes</h2>
+    <table>
+      <tr>
+        <td>Cover material</td>
+        <td>Matte black cover stock / soft-touch laminate</td>
+      </tr>
+      <tr>
+        <td>Cover size</td>
+        <td>A5 — 148mm x 210mm</td>
+      </tr>
+      <tr>
+        <td>Imprint position</td>
+        <td>Lower-right corner, 10mm from right edge, 10mm from bottom</td>
+      </tr>
+      <tr>
+        <td>Imprint size</td>
+        <td>Wordmark approximately 35mm wide</td>
+      </tr>
+      <tr>
+        <td>Finish options</td>
+        <td>
+          <strong>Blind deboss</strong> — subtle, tactile, most minimal<br>
+          <strong>Silver foil</strong> — elegant, modern<br>
+          <strong>Purple foil</strong> — <span class="swatch-inline" style="background: var(--purple);"></span> on-brand accent<br>
+          <strong>Gold foil</strong> — premium, warm feel
+        </td>
+      </tr>
+      <tr>
+        <td>Belly band</td>
+        <td>
+          <span class="swatch-inline" style="background: var(--purple);"></span> Purple (#7B2D8E), ~60mm tall<br>
+          White wordmark + tagline B: "Your daily companion for balanced living"
+        </td>
+      </tr>
+      <tr>
+        <td>Binding</td>
+        <td>Spiral / wire-o, 10mm left margin</td>
+      </tr>
+    </table>
+  </div>
+
+</body>
+</html>
