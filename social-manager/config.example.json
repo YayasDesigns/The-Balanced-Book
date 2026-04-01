@@ -1,0 +1,24 @@
+{
+  "openrouter": {
+    "apiKey": "YOUR_OPENROUTER_API_KEY",
+    "model": "anthropic/claude-sonnet-4-20250514"
+  },
+  "meta": {
+    "appId": "",
+    "appSecret": "",
+    "pageId": "",
+    "pageAccessToken": "",
+    "instagramAccountId": ""
+  },
+  "tiktok": {
+    "clientKey": "",
+    "clientSecret": "",
+    "accessToken": ""
+  },
+  "brand": {
+    "name": "The Balanced Book",
+    "handle": "@thebalancedbook",
+    "website": "https://yayasdesigns.github.io/The-Balanced-Book/",
+    "hashtags": ["#TheBalancedBook", "#PlanReflectGrow", "#BalancedLiving"]
+  }
+}

@@ -1,0 +1,4 @@
+node_modules/
+social-manager/config.json
+social-manager/calendars/
+social-manager/queue/

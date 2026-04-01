@@ -1,0 +1,15 @@
+{
+  "name": "tbb-social-manager",
+  "version": "1.0.0",
+  "description": "Social media content planner and publisher for The Balanced Book",
+  "private": true,
+  "scripts": {
+    "plan": "node planner.js",
+    "queue": "node queue.js",
+    "publish": "node publish.js",
+    "setup": "node setup.js"
+  },
+  "dependencies": {
+    "node-fetch": "^2.7.0"
+  }
+}
