@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Balanced Book — Financial Projections</title>
+  <style>
+    :root {
+      --purple: #7B2D8E;
+      --terracotta: #C0522E;
+      --sage: #7AA8A0;
+      --parchment: #F0DEC8;
+      --dark: #2C2C2C;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: #f5f5f5;
+      color: var(--dark);
+      line-height: 1.5;
+      padding: 40px 20px;
+    }
+    .container { max-width: 1200px; margin: 0 auto; }
+    h1 {
+      font-size: 1.8rem;
+      color: var(--purple);
+      margin-bottom: 4px;
+    }
+    .subtitle {
+      color: #888;
+      font-size: 0.95rem;
+      margin-bottom: 32px;
+    }
+    h2 {
+      font-size: 1.2rem;
+      color: var(--purple);
+      margin: 32px 0 12px;
+      border-bottom: 2px solid var(--purple);
+      padding-bottom: 4px;
+    }
+    h3 {
+      font-size: 1rem;
+      color: var(--terracotta);
+      margin: 24px 0 8px;
+    }
+
+    /* Assumptions grid */
+    .assumptions {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .assumption-card {
+      background: white;
+      border-radius: 8px;
+      padding: 16px;
+      border-left: 4px solid var(--purple);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    }
+    .assumption-card h4 {
+      font-size: 0.85rem;
+      color: var(--purple);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .assumption-card table {
+      width: 100%;
+      font-size: 0.9rem;
+    }
+    .assumption-card td {
+      padding: 2px 0;
+    }
+    .assumption-card td:last-child {
+      text-align: right;
+      font-weight: 600;
+    }
+
+    /* Spreadsheet tables */
+    .table-wrap {
+      overflow-x: auto;
+      margin: 12px 0 24px;
+      border-radius: 8px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    }
+    table.sheet {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      font-size: 0.85rem;
+      min-width: 900px;
+    }
+    table.sheet th, table.sheet td {
+      padding: 8px 12px;
+      text-align: right;
+      border-bottom: 1px solid #eee;
+      white-space: nowrap;
+    }
+    table.sheet th {
+      background: var(--purple);
+      color: white;
+      font-weight: 600;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      position: sticky;
+      top: 0;
+    }
+    table.sheet td:first-child,
+    table.sheet th:first-child {
+      text-align: left;
+      font-weight: 600;
+      position: sticky;
+      left: 0;
+      background: inherit;
+      z-index: 1;
+    }
+    table.sheet th:first-child { z-index: 2; }
+    table.sheet tbody tr:nth-child(even) { background: #fafafa; }
+    table.sheet tbody tr:hover { background: #f0edf5; }
+
+    /* Phase row highlights */
+    tr.phase-row td {
+      background: var(--parchment) !important;
+      font-weight: 700;
+      font-size: 0.8rem;
+      color: var(--terracotta);
+      text-align: left !important;
+      border-top: 2px solid var(--terracotta);
+    }
+    /* Totals row */
+    tr.totals td {
+      background: #f3eef6 !important;
+      font-weight: 700;
+      border-top: 2px solid var(--purple);
+      color: var(--purple);
+    }
+    /* Negative values */
+    .neg { color: var(--terracotta); }
+    .pos { color: #2a7a2a; }
+
+    /* Summary cards */
+    .summary-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin: 16px 0 24px;
+    }
+    .summary-card {
+      background: white;
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    }
+    .summary-card .label {
+      font-size: 0.8rem;
+      color: #888;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .summary-card .value {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-top: 4px;
+    }
+    .summary-card .note {
+      font-size: 0.75rem;
+      color: #aaa;
+      margin-top: 4px;
+    }
+
+    .notes {
+      background: white;
+      border-radius: 8px;
+      padding: 20px;
+      margin-top: 24px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+      font-size: 0.9rem;
+    }
+    .notes ul { margin-left: 20px; }
+    .notes li { margin-bottom: 6px; }
+    .notes strong { color: var(--purple); }
+
+    @media print {
+      body { background: white; padding: 10px; }
+      .table-wrap { box-shadow: none; border: 1px solid #ccc; }
+      table.sheet { min-width: auto; font-size: 0.75rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <h1>The Balanced Book — Financial Projections</h1>
+  <p class="subtitle">24-month estimated growth plan &middot; Conservative scenario &middot; Updated April 2026</p>
+
+  <!-- ========== ASSUMPTIONS ========== -->
+  <h2>Key Assumptions</h2>
+  <div class="assumptions">
+    <div class="assumption-card">
+      <h4>Product &amp; Pricing</h4>
+      <table>
+        <tr><td>Single book (website)</td><td>$34.99</td></tr>
+        <tr><td>Yearly bundle per book</td><td>$30.00</td></tr>
+        <tr><td>Avg. selling price (blended)</td><td>$33.00</td></tr>
+        <tr><td>Wholesale price (to stores)</td><td>$17.50</td></tr>
+      </table>
+    </div>
+    <div class="assumption-card">
+      <h4>Production Costs</h4>
+      <table>
+        <tr><td>POD cost (Lulu) per unit</td><td>$23.05</td></tr>
+        <tr><td>Bulk cost (500+ units)</td><td>$3.50</td></tr>
+        <tr><td>Shipping per order (avg)</td><td>$4.00</td></tr>
+        <tr><td>Platform fees (avg %)</td><td>5%</td></tr>
+      </table>
+    </div>
+    <div class="assumption-card">
+      <h4>Fixed Monthly Costs</h4>
+      <table>
+        <tr><td>Domain + hosting</td><td>$5</td></tr>
+        <tr><td>Canva Pro</td><td>$13</td></tr>
+        <tr><td>Email marketing (free→paid)</td><td>$0–$30</td></tr>
+        <tr><td>Misc (packaging, supplies)</td><td>$10–$50</td></tr>
+      </table>
+    </div>
+    <div class="assumption-card">
+      <h4>Growth Assumptions</h4>
+      <table>
+        <tr><td>Launch month sales</td><td>8 units</td></tr>
+        <tr><td>Bulk switch trigger</td><td>50+ units/mo</td></tr>
+        <tr><td>Bulk switch upfront cost</td><td>$1,750</td></tr>
+        <tr><td>Bundle buyers (% of sales)</td><td>20%</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- ========== YEAR 1 MONTHLY ========== -->
+  <h2>Year 1 — Monthly Breakdown</h2>
+
+  <div class="table-wrap">
+    <table class="sheet">
+      <thead>
+        <tr>
+          <th>Month</th>
+          <th>Phase</th>
+          <th>Units Sold</th>
+          <th>Avg. Price</th>
+          <th>Revenue</th>
+          <th>COGS/Unit</th>
+          <th>Total COGS</th>
+          <th>Platform Fees</th>
+          <th>Marketing</th>
+          <th>Fixed Costs</th>
+          <th>Total Expenses</th>
+          <th>Net Profit</th>
+          <th>Cumulative</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Phase 1: Launch & Validate (POD) -->
+        <tr class="phase-row"><td colspan="13">Phase 1: Launch &amp; Validate — POD via Lulu (Months 1–4)</td></tr>
+        <tr>
+          <td>1</td><td>POD</td><td>8</td><td>$33.00</td>
+          <td>$264</td><td>$23.05</td><td>$184</td>
+          <td>$13</td><td>$25</td><td>$28</td>
+          <td>$250</td><td class="pos">$14</td><td class="pos">$14</td>
+        </tr>
+        <tr>
+          <td>2</td><td>POD</td><td>12</td><td>$33.00</td>
+          <td>$396</td><td>$23.05</td><td>$277</td>
+          <td>$20</td><td>$40</td><td>$28</td>
+          <td>$365</td><td class="pos">$31</td><td class="pos">$45</td>
+        </tr>
+        <tr>
+          <td>3</td><td>POD</td><td>18</td><td>$33.00</td>
+          <td>$594</td><td>$23.05</td><td>$415</td>
+          <td>$30</td><td>$50</td><td>$28</td>
+          <td>$523</td><td class="pos">$71</td><td class="pos">$116</td>
+        </tr>
+        <tr>
+          <td>4</td><td>POD</td><td>22</td><td>$33.00</td>
+          <td>$726</td><td>$23.05</td><td>$507</td>
+          <td>$36</td><td>$60</td><td>$28</td>
+          <td>$631</td><td class="pos">$95</td><td class="pos">$211</td>
+        </tr>
+
+        <!-- Phase 2: Growth (still POD, ramping marketing) -->
+        <tr class="phase-row"><td colspan="13">Phase 2: Growth — Increasing Marketing &amp; Social Presence (Months 5–9)</td></tr>
+        <tr>
+          <td>5</td><td>POD</td><td>28</td><td>$33.00</td>
+          <td>$924</td><td>$23.05</td><td>$645</td>
+          <td>$46</td><td>$80</td><td>$38</td>
+          <td>$809</td><td class="pos">$115</td><td class="pos">$326</td>
+        </tr>
+        <tr>
+          <td>6</td><td>POD</td><td>33</td><td>$33.00</td>
+          <td>$1,089</td><td>$23.05</td><td>$761</td>
+          <td>$54</td><td>$100</td><td>$38</td>
+          <td>$953</td><td class="pos">$136</td><td class="pos">$462</td>
+        </tr>
+        <tr>
+          <td>7</td><td>POD</td><td>38</td><td>$33.00</td>
+          <td>$1,254</td><td>$23.05</td><td>$876</td>
+          <td>$63</td><td>$100</td><td>$38</td>
+          <td>$1,077</td><td class="pos">$177</td><td class="pos">$639</td>
+        </tr>
+        <tr>
+          <td>8</td><td>POD</td><td>42</td><td>$33.00</td>
+          <td>$1,386</td><td>$23.05</td><td>$968</td>
+          <td>$69</td><td>$120</td><td>$38</td>
+          <td>$1,195</td><td class="pos">$191</td><td class="pos">$830</td>
+        </tr>
+        <tr>
+          <td>9</td><td>POD</td><td>48</td><td>$33.00</td>
+          <td>$1,584</td><td>$23.05</td><td>$1,106</td>
+          <td>$79</td><td>$120</td><td>$38</td>
+          <td>$1,343</td><td class="pos">$241</td><td class="pos">$1,071</td>
+        </tr>
+
+        <!-- Phase 3: Scale — Switch to Bulk -->
+        <tr class="phase-row"><td colspan="13">Phase 3: Scale — Switch to Bulk Printing (Months 10–12) &middot; $1,750 upfront bulk order in Month 10</td></tr>
+        <tr>
+          <td>10</td><td>Bulk</td><td>55</td><td>$33.00</td>
+          <td>$1,815</td><td>$3.50</td><td>$193</td>
+          <td>$91</td><td>$150</td><td>$48</td>
+          <td class="neg">$2,232</td><td class="neg">–$417</td><td class="pos">$654</td>
+        </tr>
+        <tr>
+          <td>11</td><td>Bulk</td><td>62</td><td>$33.00</td>
+          <td>$2,046</td><td>$3.50</td><td>$217</td>
+          <td>$102</td><td>$150</td><td>$48</td>
+          <td>$517</td><td class="pos">$1,529</td><td class="pos">$2,183</td>
+        </tr>
+        <tr>
+          <td>12</td><td>Bulk</td><td>70</td><td>$33.00</td>
+          <td>$2,310</td><td>$3.50</td><td>$245</td>
+          <td>$116</td><td>$150</td><td>$48</td>
+          <td>$559</td><td class="pos">$1,751</td><td class="pos">$3,934</td>
+        </tr>
+
+        <!-- Year 1 Totals -->
+        <tr class="totals">
+          <td>Year 1 Total</td><td></td><td>436</td><td></td>
+          <td>$14,388</td><td></td><td>$6,394</td>
+          <td>$719</td><td>$1,145</td><td>$446</td>
+          <td>$10,454</td><td>$3,934</td><td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Year 1 Summary Cards -->
+  <div class="summary-row">
+    <div class="summary-card">
+      <div class="label">Year 1 Revenue</div>
+      <div class="value" style="color: var(--purple);">$14,388</div>
+      <div class="note">436 units sold</div>
+    </div>
+    <div class="summary-card">
+      <div class="label">Year 1 Net Profit</div>
+      <div class="value pos">$3,934</div>
+      <div class="note">27% overall margin</div>
+    </div>
+    <div class="summary-card">
+      <div class="label">Avg. Profit/Unit (POD)</div>
+      <div class="value" style="color: var(--terracotta);">$4.28</div>
+      <div class="note">Months 1–9</div>
+    </div>
+    <div class="summary-card">
+      <div class="label">Avg. Profit/Unit (Bulk)</div>
+      <div class="value pos">$25.83</div>
+      <div class="note">Months 10–12 (excl. upfront)</div>
+    </div>
+  </div>
+
+  <!-- ========== YEAR 2 QUARTERLY ========== -->
+  <h2>Year 2 — Quarterly Projections</h2>
+
+  <div class="table-wrap">
+    <table class="sheet">
+      <thead>
+        <tr>
+          <th>Quarter</th>
+          <th>Avg. Units/Mo</th>
+          <th>Total Units</th>
+          <th>Revenue</th>
+          <th>COGS</th>
+          <th>Platform Fees</th>
+          <th>Marketing</th>
+          <th>Fixed Costs</th>
+          <th>Total Expenses</th>
+          <th>Net Profit</th>
+          <th>Cumulative</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Q1 (Mo 13–15)</td><td>80</td><td>240</td>
+          <td>$7,920</td><td>$840</td><td>$396</td><td>$600</td><td>$174</td>
+          <td>$2,010</td><td class="pos">$5,910</td><td class="pos">$9,844</td>
+        </tr>
+        <tr>
+          <td>Q2 (Mo 16–18)</td><td>95</td><td>285</td>
+          <td>$9,405</td><td>$998</td><td>$470</td><td>$750</td><td>$174</td>
+          <td>$2,392</td><td class="pos">$7,013</td><td class="pos">$16,857</td>
+        </tr>
+        <tr>
+          <td>Q3 (Mo 19–21)</td><td>110</td><td>330</td>
+          <td>$10,890</td><td>$1,155</td><td>$545</td><td>$900</td><td>$204</td>
+          <td>$2,804</td><td class="pos">$8,086</td><td class="pos">$24,943</td>
+        </tr>
+        <tr>
+          <td>Q4 (Mo 22–24)</td><td>130</td><td>390</td>
+          <td>$12,870</td><td>$1,365</td><td>$644</td><td>$1,050</td><td>$204</td>
+          <td>$3,263</td><td class="pos">$9,607</td><td class="pos">$34,550</td>
+        </tr>
+        <tr class="totals">
+          <td>Year 2 Total</td><td></td><td>1,245</td>
+          <td>$41,085</td><td>$4,358</td><td>$2,055</td><td>$3,300</td><td>$756</td>
+          <td>$10,469</td><td>$30,616</td><td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Year 2 Summary Cards -->
+  <div class="summary-row">
+    <div class="summary-card">
+      <div class="label">Year 2 Revenue</div>
+      <div class="value" style="color: var(--purple);">$41,085</div>
+      <div class="note">1,245 units sold</div>
+    </div>
+    <div class="summary-card">
+      <div class="label">Year 2 Net Profit</div>
+      <div class="value pos">$30,616</div>
+      <div class="note">74% margin (bulk printing)</div>
+    </div>
+    <div class="summary-card">
+      <div class="label">2-Year Total Profit</div>
+      <div class="value pos">$34,550</div>
+      <div class="note">1,681 total units</div>
+    </div>
+    <div class="summary-card">
+      <div class="label">Avg. Monthly Profit (Yr 2)</div>
+      <div class="value pos">$2,551</div>
+      <div class="note">After all expenses</div>
+    </div>
+  </div>
+
+  <!-- ========== BREAK-EVEN ANALYSIS ========== -->
+  <h2>Break-Even Analysis</h2>
+
+  <div class="table-wrap">
+    <table class="sheet">
+      <thead>
+        <tr>
+          <th>Scenario</th>
+          <th>Selling Price</th>
+          <th>Cost/Unit</th>
+          <th>Gross Profit/Unit</th>
+          <th>Monthly Fixed Costs</th>
+          <th>Break-Even Units/Mo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>POD only (early months)</td><td>$33.00</td><td>$23.05</td>
+          <td>$9.95</td><td>$68</td><td>7 units</td>
+        </tr>
+        <tr>
+          <td>POD + marketing ($100/mo)</td><td>$33.00</td><td>$23.05</td>
+          <td>$9.95</td><td>$168</td><td>17 units</td>
+        </tr>
+        <tr>
+          <td>Bulk printing</td><td>$33.00</td><td>$3.50</td>
+          <td>$29.50</td><td>$198</td><td>7 units</td>
+        </tr>
+        <tr>
+          <td>Bulk + heavy marketing ($300/mo)</td><td>$33.00</td><td>$3.50</td>
+          <td>$29.50</td><td>$498</td><td>17 units</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ========== NOTES ========== -->
+  <div class="notes">
+    <h3 style="color: var(--purple); margin-bottom: 8px;">Important Notes &amp; Caveats</h3>
+    <ul>
+      <li><strong>Conservative estimates:</strong> These projections assume steady organic growth with modest paid marketing. Viral social media moments or press coverage could accelerate growth significantly.</li>
+      <li><strong>POD margins are thin:</strong> At $23.05 print cost (Lulu), margins during months 1–9 are tight. The real profit comes after switching to bulk printing at ~$3.50/unit.</li>
+      <li><strong>Month 10 dip:</strong> The one-time $1,750 bulk order investment causes a temporary loss. This pays for itself within 1 month of bulk-rate sales.</li>
+      <li><strong>Platform fees:</strong> Estimated at 5% average across Etsy (~6.5%), Shopify (~2.9%), and direct sales (payment processing only ~2.9%).</li>
+      <li><strong>Shipping:</strong> Not itemized separately — assumed either included in price or passed to customer. Lulu POD handles fulfillment; bulk orders need self-fulfillment or 3PL.</li>
+      <li><strong>Wholesale not included:</strong> Year 2 projections are direct-to-consumer only. Wholesale (at $17.50/unit) would increase volume but lower per-unit profit.</li>
+      <li><strong>Taxes not included:</strong> All figures are pre-tax. Set aside ~25–30% of net profit for self-employment and income taxes.</li>
+      <li><strong>No salary included:</strong> These profits do not account for paying yourself. Consider that a separate line item once profits are consistent.</li>
+    </ul>
+  </div>
+
+</div>
+</body>
+</html>
