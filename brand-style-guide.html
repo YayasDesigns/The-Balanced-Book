@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Balanced Book — Brand Style Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Nunito+Sans:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    /* ============================================
+       BRAND STYLE GUIDE — The Balanced Book
+       ============================================ */
+
+    :root {
+      --purple: #7B2D8E;
+      --terracotta: #C0522E;
+      --dusty-petal: #E8BFCC;
+      --parchment: #F0DEC8;
+      --sage-teal: #7AA8A0;
+
+      --black: #1a1a1a;
+      --dark-gray: #444;
+      --mid-gray: #888;
+      --light-gray: #e8e8e8;
+      --white: #fefefe;
+
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-heading: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Nunito Sans', 'Helvetica Neue', Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--black);
+      background: #f5f3f0;
+      line-height: 1.6;
+    }
+
+    /* ---- Layout ---- */
+    .guide {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 30px;
+    }
+
+    section {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 40px;
+      margin-bottom: 30px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+
+    /* ---- Header ---- */
+    .hero {
+      text-align: center;
+      background: linear-gradient(135deg, var(--purple) 0%, #5a1f6a 100%);
+      color: white;
+      padding: 60px 40px;
+      border-radius: 12px;
+      margin-bottom: 30px;
+    }
+
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: 42px;
+      font-weight: 400;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+
+    .hero .tagline {
+      font-family: var(--font-body);
+      font-size: 16px;
+      font-weight: 300;
+      opacity: 0.85;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .hero .version {
+      margin-top: 20px;
+      font-size: 13px;
+      opacity: 0.6;
+    }
+
+    /* ---- Section headings ---- */
+    h2 {
+      font-family: var(--font-heading);
+      font-size: 28px;
+      font-weight: 600;
+      color: var(--purple);
+      margin-bottom: 8px;
+    }
+
+    .section-intro {
+      color: var(--mid-gray);
+      font-size: 14px;
+      margin-bottom: 28px;
+      border-bottom: 1px solid var(--light-gray);
+      padding-bottom: 16px;
+    }
+
+    h3 {
+      font-family: var(--font-heading);
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--dark-gray);
+      margin: 24px 0 12px;
+    }
+
+    /* ============ COLOR PALETTE ============ */
+    .palette {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+    }
+
+    .swatch {
+      text-align: center;
+    }
+
+    .swatch-color {
+      height: 120px;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      border: 1px solid rgba(0,0,0,0.08);
+    }
+
+    .swatch-name {
+      font-weight: 600;
+      font-size: 14px;
+      margin-bottom: 2px;
+    }
+
+    .swatch-hex {
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+      color: var(--mid-gray);
+    }
+
+    .swatch-role {
+      font-size: 12px;
+      color: var(--mid-gray);
+      font-style: italic;
+      margin-top: 2px;
+    }
+
+    /* Color usage guide */
+    .color-usage {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 28px;
+    }
+
+    .usage-card {
+      border: 1px solid var(--light-gray);
+      border-radius: 8px;
+      padding: 20px;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .usage-dot {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .usage-card strong {
+      display: block;
+      font-size: 13px;
+      margin-bottom: 4px;
+    }
+
+    .usage-card p {
+      font-size: 13px;
+      color: var(--dark-gray);
+      line-height: 1.5;
+    }
+
+    /* ============ TYPOGRAPHY ============ */
+    .type-specimen {
+      border: 1px solid var(--light-gray);
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 16px;
+    }
+
+    .type-specimen .font-name {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--mid-gray);
+      margin-bottom: 8px;
+    }
+
+    .type-specimen .sample-large {
+      font-size: 36px;
+      margin-bottom: 8px;
+      line-height: 1.2;
+    }
+
+    .type-specimen .sample-medium {
+      font-size: 20px;
+      margin-bottom: 8px;
+      color: var(--dark-gray);
+    }
+
+    .type-specimen .sample-body {
+      font-size: 15px;
+      color: var(--dark-gray);
+      line-height: 1.6;
+    }
+
+    .type-scale {
+      margin-top: 24px;
+    }
+
+    .type-scale-row {
+      display: flex;
+      align-items: baseline;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--light-gray);
+      gap: 20px;
+    }
+
+    .type-scale-label {
+      width: 140px;
+      flex-shrink: 0;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--mid-gray);
+    }
+
+    .type-scale-sample {
+      flex: 1;
+    }
+
+    /* ============ LOGO ============ */
+    .logo-concepts {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .logo-card {
+      border: 1px solid var(--light-gray);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .logo-display {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 24px;
+      min-height: 160px;
+    }
+
+    .logo-display.dark-bg {
+      background: var(--black);
+    }
+
+    .logo-display.light-bg {
+      background: var(--parchment);
+    }
+
+    .logo-display.purple-bg {
+      background: var(--purple);
+    }
+
+    .logo-display.white-bg {
+      background: white;
+    }
+
+    .logo-card .logo-label {
+      padding: 12px 16px;
+      font-size: 13px;
+      color: var(--dark-gray);
+      background: #fafafa;
+      border-top: 1px solid var(--light-gray);
+    }
+
+    /* Wordmark styling */
+    .wordmark {
+      text-align: center;
+      line-height: 1.1;
+    }
+
+    .wordmark .the {
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: 14px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .wordmark .balanced {
+      font-family: var(--font-display);
+      font-size: 38px;
+      font-weight: 400;
+      display: block;
+      letter-spacing: 1px;
+    }
+
+    .wordmark .book {
+      font-family: var(--font-display);
+      font-size: 38px;
+      font-weight: 400;
+      font-style: italic;
+      display: block;
+      letter-spacing: 1px;
+    }
+
+    /* Icon mark */
+    .icon-mark {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+    }
+
+    .icon-mark .bars {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .icon-mark .bar {
+      height: 4px;
+      border-radius: 2px;
+    }
+
+    /* ============ VISUAL ELEMENTS ============ */
+    .element-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 20px;
+    }
+
+    .element-card {
+      border: 1px solid var(--light-gray);
+      border-radius: 8px;
+      padding: 24px;
+      text-align: center;
+    }
+
+    .element-card .element-demo {
+      min-height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+    }
+
+    .element-card .element-label {
+      font-size: 13px;
+      color: var(--dark-gray);
+    }
+
+    /* Divider styles */
+    .divider-leaf {
+      width: 120px;
+      height: 2px;
+      background: var(--dusty-petal);
+      position: relative;
+    }
+
+    .divider-leaf::before {
+      content: '✦';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      padding: 0 8px;
+      color: var(--sage-teal);
+      font-size: 14px;
+    }
+
+    .accent-line {
+      width: 60px;
+      height: 3px;
+      border-radius: 2px;
+      background: linear-gradient(90deg, var(--purple), var(--terracotta));
+    }
+
+    /* Balance icon */
+    .balance-icon {
+      position: relative;
+      width: 60px;
+      height: 50px;
+    }
+
+    .balance-icon .fulcrum {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-bottom: 14px solid var(--purple);
+    }
+
+    .balance-icon .beam {
+      position: absolute;
+      top: 16px;
+      left: 5px;
+      width: 50px;
+      height: 3px;
+      background: var(--purple);
+      border-radius: 2px;
+    }
+
+    .balance-icon .pan-left,
+    .balance-icon .pan-right {
+      position: absolute;
+      top: 19px;
+      width: 16px;
+      height: 2px;
+      border-radius: 0 0 8px 8px;
+      border: 2px solid;
+      border-top: none;
+      height: 10px;
+    }
+
+    .balance-icon .pan-left {
+      left: 2px;
+      border-color: var(--terracotta);
+    }
+
+    .balance-icon .pan-right {
+      right: 2px;
+      border-color: var(--sage-teal);
+    }
+
+    /* ============ DO / DON'T ============ */
+    .dos-donts {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .do-card, .dont-card {
+      border-radius: 8px;
+      padding: 20px;
+    }
+
+    .do-card {
+      background: #f0faf5;
+      border: 1px solid #c8e6d6;
+    }
+
+    .dont-card {
+      background: #fdf0f0;
+      border: 1px solid #e6c8c8;
+    }
+
+    .do-card h4, .dont-card h4 {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .do-card h4 { color: #2a7a4b; }
+    .dont-card h4 { color: #a33; }
+
+    .do-card ul, .dont-card ul {
+      list-style: none;
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    .do-card li::before { content: '✓ '; color: #2a7a4b; font-weight: bold; }
+    .dont-card li::before { content: '✗ '; color: #a33; font-weight: bold; }
+
+    /* ============ COMBO SAMPLES ============ */
+    .combo-samples {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 24px;
+    }
+
+    .combo-card {
+      border-radius: 10px;
+      padding: 28px;
+      min-height: 140px;
+    }
+
+    .combo-card h4 {
+      font-family: var(--font-heading);
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+
+    .combo-card p {
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    /* ============ RESPONSIVE ============ */
+    @media (max-width: 700px) {
+      .palette { grid-template-columns: repeat(3, 1fr); }
+      .logo-concepts { grid-template-columns: 1fr; }
+      .color-usage { grid-template-columns: 1fr; }
+      .element-grid { grid-template-columns: 1fr 1fr; }
+      .dos-donts { grid-template-columns: 1fr; }
+      .combo-samples { grid-template-columns: 1fr; }
+    }
+
+    @media print {
+      body { background: white; }
+      section { box-shadow: none; border: 1px solid #ddd; break-inside: avoid; }
+      .hero { break-after: auto; }
+    }
+  </style>
+</head>
+<body>
+  <div class="guide">
+
+    <!-- ======== HERO ======== -->
+    <div class="hero">
+      <h1>The Balanced Book</h1>
+      <div class="tagline">Brand Style Guide</div>
+      <div class="version">Version 1.0 — April 2026</div>
+    </div>
+
+    <!-- ======== BRAND OVERVIEW ======== -->
+    <section>
+      <h2>Brand Overview</h2>
+      <p class="section-intro">A hybrid planner and journal that brings together productivity and mindfulness — helping people find balance in their daily lives.</p>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; text-align: center;">
+        <div>
+          <h3 style="color: var(--purple); margin-top: 0;">Mission</h3>
+          <p style="font-size: 14px; color: var(--dark-gray);">To help people live intentionally by combining planning with self-reflection.</p>
+        </div>
+        <div>
+          <h3 style="color: var(--terracotta); margin-top: 0;">Voice</h3>
+          <p style="font-size: 14px; color: var(--dark-gray);">Warm, encouraging, and genuine — like a thoughtful friend, not a drill sergeant.</p>
+        </div>
+        <div>
+          <h3 style="color: var(--sage-teal); margin-top: 0;">Feeling</h3>
+          <p style="font-size: 14px; color: var(--dark-gray);">Calm confidence. The relief of having a plan and the peace of knowing yourself.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======== COLOR PALETTE ======== -->
+    <section>
+      <h2>Color Palette</h2>
+      <p class="section-intro">Five purposeful colors that balance warmth with calm. Each color has a specific role in the brand system.</p>
+
+      <div class="palette">
+        <div class="swatch">
+          <div class="swatch-color" style="background: var(--purple);"></div>
+          <div class="swatch-name">Purple</div>
+          <div class="swatch-hex">#7B2D8E</div>
+          <div class="swatch-role">Anchor</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background: var(--terracotta);"></div>
+          <div class="swatch-name">Terracotta</div>
+          <div class="swatch-hex">#C0522E</div>
+          <div class="swatch-role">Warmth</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background: var(--dusty-petal);"></div>
+          <div class="swatch-name">Dusty Petal</div>
+          <div class="swatch-hex">#E8BFCC</div>
+          <div class="swatch-role">Blush Soft</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background: var(--parchment);"></div>
+          <div class="swatch-name">Parchment</div>
+          <div class="swatch-hex">#F0DEC8</div>
+          <div class="swatch-role">Neutral Light</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background: var(--sage-teal);"></div>
+          <div class="swatch-name">Sage Teal</div>
+          <div class="swatch-hex">#7AA8A0</div>
+          <div class="swatch-role">Cool Contrast</div>
+        </div>
+      </div>
+
+      <h3>Color Roles & Usage</h3>
+      <div class="color-usage">
+        <div class="usage-card">
+          <div class="usage-dot" style="background: var(--purple);"></div>
+          <div>
+            <strong>Purple — Primary / Anchor</strong>
+            <p>Headlines, accent elements on planner pages, checkboxes, buttons, and the main brand identifier.</p>
+          </div>
+        </div>
+        <div class="usage-card">
+          <div class="usage-dot" style="background: var(--terracotta);"></div>
+          <div>
+            <strong>Terracotta — Secondary / Warmth</strong>
+            <p>Call-to-action highlights, secondary headings, hover states, and supporting accents.</p>
+          </div>
+        </div>
+        <div class="usage-card">
+          <div class="usage-dot" style="background: var(--dusty-petal);"></div>
+          <div>
+            <strong>Dusty Petal — Soft Highlight</strong>
+            <p>Section backgrounds, dividers, subtle emphasis areas, and decorative elements.</p>
+          </div>
+        </div>
+        <div class="usage-card">
+          <div class="usage-dot" style="background: var(--parchment);"></div>
+          <div>
+            <strong>Parchment — Neutral Base</strong>
+            <p>Page backgrounds, cards, and large surface areas. Evokes the feel of quality paper.</p>
+          </div>
+        </div>
+        <div class="usage-card">
+          <div class="usage-dot" style="background: var(--sage-teal);"></div>
+          <div>
+            <strong>Sage Teal — Cool Balance</strong>
+            <p>Icons, infographic elements, tertiary accents. Provides visual breathing room against warm tones.</p>
+          </div>
+        </div>
+        <div class="usage-card">
+          <div class="usage-dot" style="background: var(--black);"></div>
+          <div>
+            <strong>Soft Black — Structure</strong>
+            <p>#1a1a1a for body text, lines, and structural elements. Softer than pure black for a warmer feel.</p>
+          </div>
+        </div>
+      </div>
+
+      <h3>Color Combinations</h3>
+      <div class="combo-samples">
+        <div class="combo-card" style="background: var(--parchment); color: var(--black);">
+          <h4 style="color: var(--purple);">Parchment + Purple</h4>
+          <p>The primary combination. Warm background with purple accents feels grounded and premium.</p>
+        </div>
+        <div class="combo-card" style="background: var(--purple); color: white;">
+          <h4 style="color: var(--parchment);">Purple + Parchment</h4>
+          <p>Inverted for bold sections — cover, headers, marketing materials, and social media.</p>
+        </div>
+        <div class="combo-card" style="background: var(--dusty-petal); color: var(--black);">
+          <h4 style="color: var(--terracotta);">Dusty Petal + Terracotta</h4>
+          <p>Warm and intimate. Great for quotes, testimonials, and reflective sections.</p>
+        </div>
+        <div class="combo-card" style="background: #f7f9f8; color: var(--black); border: 1px solid var(--light-gray);">
+          <h4 style="color: var(--sage-teal);">Light + Sage Teal</h4>
+          <p>Clean and calming. Use for informational content, tips, and wellness features.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======== TYPOGRAPHY ======== -->
+    <section>
+      <h2>Typography</h2>
+      <p class="section-intro">Three fonts form a clear hierarchy: a display face for impact, a heading face for elegance, and a body face for readability.</p>
+
+      <!-- Display font -->
+      <div class="type-specimen">
+        <div class="font-name">Display — Playfair Display</div>
+        <div class="sample-large" style="font-family: 'Playfair Display', serif;">The Balanced Book</div>
+        <div class="sample-medium" style="font-family: 'Playfair Display', serif; font-style: italic;">Find your balance, one page at a time.</div>
+        <div class="sample-body" style="font-family: var(--font-body); color: var(--mid-gray);">
+          Use for: brand name, cover title, hero headings, marketing headlines
+        </div>
+      </div>
+
+      <!-- Heading font -->
+      <div class="type-specimen">
+        <div class="font-name">Heading — Cormorant Garamond</div>
+        <div class="sample-large" style="font-family: 'Cormorant Garamond', serif; font-weight: 600;">Gratitude & Affirmations</div>
+        <div class="sample-medium" style="font-family: 'Cormorant Garamond', serif; font-style: italic;">Today's Reflections</div>
+        <div class="sample-body" style="font-family: var(--font-body); color: var(--mid-gray);">
+          Use for: section headings, planner page titles, subheadings, pull quotes
+        </div>
+      </div>
+
+      <!-- Body font -->
+      <div class="type-specimen">
+        <div class="font-name">Body — Nunito Sans</div>
+        <div class="sample-large" style="font-family: 'Nunito Sans', sans-serif; font-weight: 300;">Clean & Friendly</div>
+        <div class="sample-medium" style="font-family: 'Nunito Sans', sans-serif;">A balanced approach to daily planning and self-reflection.</div>
+        <div class="sample-body" style="font-family: 'Nunito Sans', sans-serif;">
+          Nunito Sans is a rounded, friendly sans-serif that stays highly readable at small sizes — perfect for planner body text, labels, instructions, and UI elements. Its warmth complements the serif display fonts without competing.
+        </div>
+      </div>
+
+      <h3>Type Scale</h3>
+      <div class="type-scale">
+        <div class="type-scale-row">
+          <div class="type-scale-label">Display / Hero</div>
+          <div class="type-scale-sample" style="font-family: 'Playfair Display', serif; font-size: 36px;">The Balanced Book</div>
+        </div>
+        <div class="type-scale-row">
+          <div class="type-scale-label">H1 / Page Title</div>
+          <div class="type-scale-sample" style="font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 600;">Monthly Overview</div>
+        </div>
+        <div class="type-scale-row">
+          <div class="type-scale-label">H2 / Section</div>
+          <div class="type-scale-sample" style="font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 600;">Goals & Priorities</div>
+        </div>
+        <div class="type-scale-row">
+          <div class="type-scale-label">H3 / Subsection</div>
+          <div class="type-scale-sample" style="font-family: 'Cormorant Garamond', serif; font-size: 18px; font-style: italic;">Today's Reflections</div>
+        </div>
+        <div class="type-scale-row">
+          <div class="type-scale-label">Body</div>
+          <div class="type-scale-sample" style="font-family: 'Nunito Sans', sans-serif; font-size: 15px;">Plan your day with intention and reflect with honesty.</div>
+        </div>
+        <div class="type-scale-row">
+          <div class="type-scale-label">Small / Label</div>
+          <div class="type-scale-sample" style="font-family: 'Nunito Sans', sans-serif; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; color: var(--mid-gray);">Sleep · Appetite · Recreation · Energy</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======== LOGO / WORDMARK ======== -->
+    <section>
+      <h2>Logo & Wordmark</h2>
+      <p class="section-intro">The primary brand mark is a typographic wordmark. These are starting concepts to iterate from.</p>
+
+      <div class="logo-concepts">
+        <!-- Concept 1: Light background -->
+        <div class="logo-card">
+          <div class="logo-display light-bg">
+            <div class="wordmark" style="color: var(--purple);">
+              <span class="the" style="color: var(--dark-gray);">The</span>
+              <span class="balanced">Balanced</span>
+              <span class="book">Book</span>
+            </div>
+          </div>
+          <div class="logo-label">Primary — on parchment</div>
+        </div>
+
+        <!-- Concept 2: Dark background -->
+        <div class="logo-card">
+          <div class="logo-display dark-bg">
+            <div class="wordmark" style="color: var(--parchment);">
+              <span class="the" style="color: var(--sage-teal);">The</span>
+              <span class="balanced">Balanced</span>
+              <span class="book">Book</span>
+            </div>
+          </div>
+          <div class="logo-label">Reversed — on dark</div>
+        </div>
+
+        <!-- Concept 3: Purple background -->
+        <div class="logo-card">
+          <div class="logo-display purple-bg">
+            <div class="wordmark" style="color: white;">
+              <span class="the" style="color: var(--dusty-petal);">The</span>
+              <span class="balanced">Balanced</span>
+              <span class="book">Book</span>
+            </div>
+          </div>
+          <div class="logo-label">On brand purple</div>
+        </div>
+
+        <!-- Concept 4: Minimal inline -->
+        <div class="logo-card">
+          <div class="logo-display white-bg">
+            <div style="text-align: center;">
+              <span style="font-family: 'Nunito Sans', sans-serif; font-weight: 300; font-size: 12px; letter-spacing: 4px; text-transform: uppercase; color: var(--mid-gray);">The</span><br>
+              <span style="font-family: 'Playfair Display', serif; font-size: 28px; color: var(--purple); letter-spacing: 2px;">BALANCED</span><br>
+              <span style="font-family: 'Nunito Sans', sans-serif; font-weight: 300; font-size: 12px; letter-spacing: 6px; text-transform: uppercase; color: var(--terracotta);">BOOK</span>
+            </div>
+          </div>
+          <div class="logo-label">All-caps variation</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======== VISUAL ELEMENTS ======== -->
+    <section>
+      <h2>Visual Elements</h2>
+      <p class="section-intro">Recurring visual motifs that create consistency across the planner, packaging, and marketing.</p>
+
+      <div class="element-grid">
+        <div class="element-card">
+          <div class="element-demo">
+            <div class="accent-line"></div>
+          </div>
+          <div class="element-label">Gradient accent line<br><small style="color: var(--mid-gray);">Purple → Terracotta</small></div>
+        </div>
+
+        <div class="element-card">
+          <div class="element-demo">
+            <div class="divider-leaf"></div>
+          </div>
+          <div class="element-label">Section divider<br><small style="color: var(--mid-gray);">Dusty petal + sage star</small></div>
+        </div>
+
+        <div class="element-card">
+          <div class="element-demo">
+            <div class="balance-icon">
+              <div class="beam"></div>
+              <div class="pan-left"></div>
+              <div class="pan-right"></div>
+              <div class="fulcrum"></div>
+            </div>
+          </div>
+          <div class="element-label">Balance motif<br><small style="color: var(--mid-gray);">Icon element</small></div>
+        </div>
+
+        <div class="element-card">
+          <div class="element-demo">
+            <div style="width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, var(--dusty-petal) 0%, var(--parchment) 100%); border: 2px solid var(--purple); opacity: 0.9;"></div>
+          </div>
+          <div class="element-label">Soft circle<br><small style="color: var(--mid-gray);">Photo frames, badges</small></div>
+        </div>
+
+        <div class="element-card">
+          <div class="element-demo">
+            <div style="display: flex; gap: 3px;">
+              <div style="width: 4px; height: 30px; border-radius: 2px; background: var(--purple);"></div>
+              <div style="width: 4px; height: 22px; border-radius: 2px; background: var(--terracotta); align-self: flex-end;"></div>
+              <div style="width: 4px; height: 35px; border-radius: 2px; background: var(--sage-teal);"></div>
+              <div style="width: 4px; height: 18px; border-radius: 2px; background: var(--dusty-petal); align-self: flex-end;"></div>
+              <div style="width: 4px; height: 28px; border-radius: 2px; background: var(--purple);"></div>
+            </div>
+          </div>
+          <div class="element-label">Bar chart motif<br><small style="color: var(--mid-gray);">S.A.R.E. inspired</small></div>
+        </div>
+
+        <div class="element-card">
+          <div class="element-demo">
+            <div style="width: 80px; height: 80px; background-image: radial-gradient(circle, var(--sage-teal) 1px, transparent 1px); background-size: 8px 8px; border-radius: 6px;"></div>
+          </div>
+          <div class="element-label">Dot grid texture<br><small style="color: var(--mid-gray);">Background pattern</small></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======== DO / DON'T ======== -->
+    <section>
+      <h2>Brand Guidelines</h2>
+      <p class="section-intro">Quick rules to keep the brand consistent across all touchpoints.</p>
+
+      <div class="dos-donts">
+        <div class="do-card">
+          <h4>Do</h4>
+          <ul>
+            <li>Use purple as the dominant accent color</li>
+            <li>Pair serif headings with sans-serif body text</li>
+            <li>Keep generous white space — let designs breathe</li>
+            <li>Use parchment or white backgrounds for readability</li>
+            <li>Keep the tone warm, encouraging, and genuine</li>
+            <li>Use soft, rounded corners (8-12px)</li>
+          </ul>
+        </div>
+        <div class="dont-card">
+          <h4>Don't</h4>
+          <ul>
+            <li>Use more than 2-3 palette colors in one composition</li>
+            <li>Use harsh pure black (#000) — use soft black (#1a1a1a)</li>
+            <li>Mix too many font weights — stick to the type scale</li>
+            <li>Make designs feel cluttered or overwhelming</li>
+            <li>Use a preachy or aggressive motivational tone</li>
+            <li>Stretch, rotate, or modify the wordmark</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======== FOOTER ======== -->
+    <section style="text-align: center; padding: 24px 40px; background: var(--parchment);">
+      <p style="font-family: var(--font-heading); font-size: 18px; color: var(--purple); margin-bottom: 4px;">The Balanced Book</p>
+      <p style="font-size: 12px; color: var(--mid-gray);">Brand Style Guide v1.0 — Confidential</p>
+    </section>
+
+  </div>
+</body>
+</html>
